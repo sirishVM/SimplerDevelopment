@@ -2,7 +2,7 @@ import * as dotenv from 'dotenv';
 import { hash } from 'bcryptjs';
 
 // Load env vars before importing db
-dotenv.config({ path: '.env.local' });
+dotenv.config({ path: '.env.local', override: true });
 
 async function seedAdmin() {
   try {
