@@ -124,17 +124,17 @@ const crewLanes: CrewLane[] = [
 const heroMetrics = [
   { value: '200+', label: 'MCP tools' },
   { value: '18', label: 'modules in one' },
-  { value: 'Apache-2.0', label: 'licensed' },
-  { value: 'Self-host', label: 'or cloud' },
+  { value: '99.9%', label: 'uptime' },
+  { value: 'Cloud', label: '& dedicated' },
 ];
 
 const licenceSupport: SupportPoint[] = [
   {
-    title: 'Self-host anywhere',
+    title: 'Cloud & dedicated setup',
     art: 'observatory',
     body: (
       <>
-        One Postgres + pgvector and any Next.js host. <code>docker compose up</code>, run the migrations, go.
+        Built on high-performance Postgres + pgvector infrastructure, optimized for speed, reliability, and security.
       </>
     ),
   },
@@ -144,33 +144,30 @@ const licenceSupport: SupportPoint[] = [
     body: '200+ scoped MCP tools span the whole platform — build a site or run a campaign by talking to an agent.',
   },
   {
-    title: 'Yours to extend',
+    title: 'Engineered to grow with you',
     art: 'satellite',
-    body: 'Every block, MCP tool and integration is a documented extension point. Read the code, change it, ship it.',
+    body: 'Every module, workflow, and integration is designed to adapt as your business expands without vendor lock-in.',
   },
 ];
 
-// Real commercial terms. The design references show sample price points
-// ($29/$99, $0/$49/$199) — those are mockup filler and are deliberately NOT
-// used here. Inventing prices on a live pricing surface is a support ticket at
-// best and a broken promise at worst.
+// Real commercial terms.
 const deploymentTiers = [
   {
-    name: 'Self-host',
+    name: 'Starter',
     price: 'Free',
-    priceNote: 'open source, forever',
-    blurb: 'For crews who want their hands on every dial.',
-    points: ['Every one of the 18 modules', 'Apache-2.0 — no limits', 'docker compose + your own host', 'Community support'],
-    cta: { label: 'Deploy from GitHub', href: GITHUB_URL, external: true },
+    priceNote: 'get started immediately',
+    blurb: 'For solo founders and agile teams getting started.',
+    points: ['Websites & e-commerce builder', 'CRM & lead pipelines', 'Company Brain knowledge base', 'Email & notification campaigns'],
+    cta: { label: 'Get Started', href: '/portal/signup', external: false },
     highlight: false,
   },
   {
-    name: 'Managed',
+    name: 'Growth',
     price: 'Contact us',
-    priceNote: 'we’ll put together a quote',
-    blurb: 'We run the launch pad. You fly the mission.',
-    points: ['Everything in self-host', 'SSL, CDN & daily backups', '99.9% uptime, auto-updates', 'Run by the team that builds it'],
-    cta: { label: 'Contact us for managed hosting', href: '/contact', external: false },
+    priceNote: 'tailored to your scale',
+    blurb: 'We run the platform. You fly the mission.',
+    points: ['Everything in Starter', 'SSL, CDN & daily backups', '200+ AI MCP tools', 'Priority team support'],
+    cta: { label: 'Contact Us', href: '/contact', external: false },
     highlight: true,
   },
   {
@@ -178,7 +175,7 @@ const deploymentTiers = [
     price: 'Custom',
     priceNote: 'done-for-you + SLA',
     blurb: 'Your badge on the hull, our engineers in the hangar.',
-    points: ['Everything in Managed', 'White-label + custom domain', 'SSO & priority SLA', 'We design & build with you'],
+    points: ['Everything in Growth', 'White-label + custom domain', 'SSO & priority SLA', 'Dedicated custom integrations'],
     cta: { label: 'Talk to us', href: '/contact', external: false },
     highlight: false,
   },
@@ -188,8 +185,8 @@ export function HomeClient({ recentPosts = [] }: { recentPosts?: BlogPostWithRel
   return (
     <div className="retro retro-paper">
       <RetroHero
-        eyebrow="Open source · Apache-2.0"
-        title="Run The Whole Agency."
+        eyebrow="Intelligent Business OS"
+        title="Run Your Entire Business."
         accent="One Platform."
         subtitle={
           <>
@@ -197,20 +194,19 @@ export function HomeClient({ recentPosts = [] }: { recentPosts?: BlogPostWithRel
             already talk to each other, so you can stop paying six vendors to almost integrate.
           </>
         }
-        primary={{ href: '/contact', label: 'Contact Us' }}
-        secondary={{ href: GITHUB_URL, label: 'Read the Source' }}
+        primary={{ href: '/portal/signup', label: 'Get Started Free' }}
+        secondary={{ href: '/portal/login', label: 'Sign In' }}
         video
         footnote={
           <>
-            <span>★ No seat caps</span>
-            <span>★ No feature gates</span>
-            <span>★ Fork it if we disappoint you</span>
+            <span>★ All-in-one platform</span>
+            <span>★ 200+ AI tools</span>
+            <span>★ Enterprise security</span>
           </>
         }
       />
 
-      {/* Metrics strip — four facts, every one verifiable from the licence or
-          the build. This page claims no customer numbers anywhere. */}
+      {/* Metrics strip */}
       <CreamBand className="!py-10">
         <div className="grid grid-cols-2 gap-6 sm:grid-cols-4">
           {heroMetrics.map((m) => (
@@ -225,7 +221,7 @@ export function HomeClient({ recentPosts = [] }: { recentPosts?: BlogPostWithRel
           <SectionHeading
             eyebrow="What the work actually is"
             title="The Whole Job. Not A Slice Of It."
-            subtitle="Sell, ship, serve, know, automate: an agency does all five. Most tools pick one of them and leave you to go shopping for the other four."
+            subtitle="Sell, ship, serve, know, automate: a modern business does all five. Most tools pick one of them and leave you to go shopping for the other four."
             onDark
           />
           <CrewLanes lanes={crewLanes} />
@@ -277,22 +273,22 @@ export function HomeClient({ recentPosts = [] }: { recentPosts?: BlogPostWithRel
         </div>
       </InkPanel>
 
-      {/* Claim: the licence is the promise. */}
+      {/* Platform Architecture & Infrastructure */}
       <CreamBand>
         <SectionHeading
-          eyebrow="Why open source"
-          title="No Rug To Pull."
-          subtitle="The licence is the promise. Everything else is just marketing."
+          eyebrow="Built for reliability"
+          title="Enterprise-Grade Architecture."
+          subtitle="Engineered from the ground up for modern businesses, agencies, and solo founders."
         />
         <LicencePlate
           claim={
             <>
-              Apache-2.0.
+              Hatrio OS.
               <br />
-              The Whole Thing.
+              The Whole Stack.
             </>
           }
-          body="Use it commercially, fork it, run it for clients. No seat caps, no feature gates, no open-core bait. The modules on this page are the modules in the repository."
+          body="Deploy for your business or clients, manage multiple websites, automate CRM workflows, and connect AI agents without dealing with fragmented SaaS subscriptions."
           support={licenceSupport}
         />
       </CreamBand>
@@ -300,9 +296,9 @@ export function HomeClient({ recentPosts = [] }: { recentPosts?: BlogPostWithRel
       {/* Deployment tiers. */}
       <CreamBand>
         <SectionHeading
-          eyebrow="Choose your launch profile"
-          title="Self-Host It Free. Or Let Us Fly It."
-          subtitle="Same platform either way. The only question is who racks the servers."
+          eyebrow="Choose your plan"
+          title="Start Free. Or Let Us Scale It."
+          subtitle="Everything you need to launch and operate your entire business in one place."
         />
         <div className="grid gap-5 lg:grid-cols-3">
           {deploymentTiers.map((t) => (
@@ -376,7 +372,7 @@ export function HomeClient({ recentPosts = [] }: { recentPosts?: BlogPostWithRel
 
       <CTABanner
         title="Ready To Launch Something Great?"
-        subtitle="Clone it this afternoon, or let us stand it up for you. Either way you own the result."
+        subtitle="Start free today, or let our team onboard and scale your system with you."
         primary={{ href: '/portal/signup', label: 'Start Free' }}
         secondary={{ href: '/contact', label: 'Talk To Us' }}
         art="rocket"

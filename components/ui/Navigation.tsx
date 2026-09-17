@@ -99,12 +99,12 @@ export function Navigation() {
                   </svg>
                 </Link>
               )}
-              <Link href="/" className="font-display text-xl flex items-center gap-2" onClick={closeMobileMenu}>
+              <Link href="/" className="font-display text-xl flex items-center" onClick={closeMobileMenu}>
                 <Image
                   src="/iconLogo.png"
-                  alt=""
-                  width={56}
-                  height={56}
+                  alt="Hatrio"
+                  width={36}
+                  height={36}
                   className="nav-logo-icon"
                   priority
                 />
@@ -113,7 +113,7 @@ export function Navigation() {
             </div>
 
             {/* Desktop Navigation */}
-            <div className="hidden md:flex items-center space-x-8">
+            <div className="hidden md:flex items-center space-x-6">
               {!pathname.startsWith('/admin') && (
                 <>
                   {navLinks.map((link) =>
@@ -146,14 +146,20 @@ export function Navigation() {
               {session ? (
                 <UserDropdown user={session.user} />
               ) : !pathname.startsWith('/admin') ? (
-                <>
+                <div className="flex items-center gap-4">
                   <Link
-                    href="/contact"
+                    href="/portal/login"
+                    className="text-sm font-semibold text-[color-mix(in_srgb,var(--retro-cream)_85%,transparent)] hover:text-[var(--retro-gold)] transition-colors"
+                  >
+                    Sign In
+                  </Link>
+                  <Link
+                    href="/portal/signup"
                     className="inline-flex items-center gap-2 rounded bg-[var(--retro-orange)] px-4 py-2 text-sm font-bold text-[var(--retro-cream)] transition-colors hover:bg-[var(--retro-rust)]"
                   >
-                    Contact Us <span aria-hidden>🚀</span>
+                    Get Started <span aria-hidden>🚀</span>
                   </Link>
-                </>
+                </div>
               ) : (
                 <Link
                   href="/admin/login"

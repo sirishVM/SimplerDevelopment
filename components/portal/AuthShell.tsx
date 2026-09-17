@@ -37,7 +37,7 @@ export function AuthShell({
           href="/"
           className="absolute left-5 top-6 flex items-center font-heading text-xl text-foreground sm:left-11 lg:left-[6.5vw]"
         >
-          <Image src="/iconLogo.png" alt="" width={56} height={56} className="nav-logo-icon" priority />
+          <Image src="/iconLogo.png" alt="Hatrio" width={36} height={36} className="nav-logo-icon" priority />
           <span>
             <b>Hatrio</b>
           </span>

@@ -12,7 +12,7 @@ export function Footer() {
           <div>
             <h3 className="font-display mb-2 text-lg font-bold">{siteConfig.name}</h3>
             <p className="mb-4 text-sm text-[color-mix(in_srgb,var(--retro-cream)_72%,transparent)]">
-              We build custom software that helps businesses grow. From web apps to mobile, design to automation.
+              The all-in-one business operating system. Websites, CRM, AI automation, email, bookings, and billing in one unified platform.
             </p>
             <div className="flex gap-4">
               <a
@@ -149,39 +149,29 @@ export function Footer() {
             </ul>
           </div>
 
-          {/* Developers */}
+          {/* Platform Resources */}
           <div>
-            <h4 className="eyebrow eyebrow--on-ink mb-4">Developers</h4>
+            <h4 className="eyebrow eyebrow--on-ink mb-4">Resources</h4>
             <ul className="space-y-2.5 text-sm">
               <li>
-                <Link href="/docs" className="text-[color-mix(in_srgb,var(--retro-cream)_72%,transparent)] transition-colors hover:text-[var(--retro-gold)]">
-                  Documentation
+                <Link href="/solutions/ai-connect" className="text-[color-mix(in_srgb,var(--retro-cream)_72%,transparent)] transition-colors hover:text-[var(--retro-gold)]">
+                  AI Connect & MCP
                 </Link>
               </li>
               <li>
-                <Link href="/docs" className="text-[color-mix(in_srgb,var(--retro-cream)_72%,transparent)] transition-colors hover:text-[var(--retro-gold)]">
-                  API reference
+                <Link href="/solutions/company-brain" className="text-[color-mix(in_srgb,var(--retro-cream)_72%,transparent)] transition-colors hover:text-[var(--retro-gold)]">
+                  Company Brain
                 </Link>
               </li>
               <li>
-                <a
-                  href="https://github.com/SimplerDevelopment/SimplerDevelopment"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-[color-mix(in_srgb,var(--retro-cream)_72%,transparent)] transition-colors hover:text-[var(--retro-gold)]"
-                >
-                  GitHub
-                </a>
+                <Link href="/portal/signup" className="text-[color-mix(in_srgb,var(--retro-cream)_72%,transparent)] transition-colors hover:text-[var(--retro-gold)]">
+                  Get Started
+                </Link>
               </li>
               <li>
-                <a
-                  href="https://github.com/SimplerDevelopment/SimplerDevelopment/blob/main/CONTRIBUTING.md"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-[color-mix(in_srgb,var(--retro-cream)_72%,transparent)] transition-colors hover:text-[var(--retro-gold)]"
-                >
-                  Contributing
-                </a>
+                <Link href="/portal/login" className="text-[color-mix(in_srgb,var(--retro-cream)_72%,transparent)] transition-colors hover:text-[var(--retro-gold)]">
+                  Client Portal
+                </Link>
               </li>
             </ul>
           </div>
@@ -190,7 +180,7 @@ export function Footer() {
           <div>
             <h4 className="eyebrow eyebrow--on-ink mb-4">Get in Touch</h4>
             <p className="text-sm text-[color-mix(in_srgb,var(--retro-cream)_65%,transparent)] mb-3">
-              Ready to start your project?
+              Ready to scale your business?
             </p>
             <Link
               href="/contact"
@@ -202,7 +192,7 @@ export function Footer() {
               </svg>
             </Link>
             <p className="text-sm text-[color-mix(in_srgb,var(--retro-cream)_65%,transparent)] mt-4">
-              {process.env.NEXT_PUBLIC_CONTACT_EMAIL || 'info@simplerdevelopment.com'}
+              {process.env.NEXT_PUBLIC_CONTACT_EMAIL || 'support@hatrio.ai'}
             </p>
           </div>
         </div>
