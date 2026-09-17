@@ -39,7 +39,7 @@ export function AuthShell({
         >
           <Image src="/iconLogo.png" alt="" width={56} height={56} className="nav-logo-icon" priority />
           <span>
-            <b>Simpler</b> Development
+            <b>Hatrio</b>
           </span>
         </Link>
 

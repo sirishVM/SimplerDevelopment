@@ -233,7 +233,7 @@ export default function OnboardingWizard({ initialState, stripeEnabled = true }:
         <div className="relative z-10 flex h-full flex-col">
           <Link href="/" className="flex items-center font-heading text-lg text-white">
             <Image src="/iconLogo.png" alt="" width={40} height={40} className="nav-logo-icon" priority />
-            <span><b>Simpler</b> Development</span>
+            <span><b>Hatrio</b></span>
           </Link>
 
           <div className="mb-4 mt-7 flex items-center gap-2.5 font-mono text-[10.5px] uppercase tracking-[0.2em] text-white/50">

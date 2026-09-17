@@ -36,7 +36,7 @@ export const defaultSEO: Metadata = {
     title: siteConfig.name,
     description: siteConfig.description,
     images: [siteConfig.ogImage],
-    creator: '@simplerdevelopment',
+    creator: '@hatrioai',
   },
   robots: {
     index: true,
@@ -49,10 +49,9 @@ export const defaultSEO: Metadata = {
       'max-snippet': -1,
     },
   },
-  // Agency favicon. Lives at public/favicon.ico so Next.js doesn't auto-inject
-  // a competing <link> tag from the app/ tree — that auto-injection was being
-  // emitted alongside tenant overrides and browsers were preferring the
-  // agency icon (sizes="256x256") over tenant PNGs. Tenant layouts override
-  // this via their own metadata.icons.
-  icons: { icon: '/favicon.ico' },
+  icons: { 
+    icon: '/favicon.ico',
+    shortcut: '/favicon.svg',
+    apple: '/apple-touch-icon.png',
+  },
 };

@@ -108,7 +108,7 @@ export function Navigation() {
                   className="nav-logo-icon"
                   priority
                 />
-                <span className="tracking-tight"><b>Simpler</b>Development</span>
+                <span className="tracking-tight"><b>Hatrio</b></span>
               </Link>
             </div>
 
