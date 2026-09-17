@@ -5,8 +5,8 @@ import { StructuredData } from '@/components/seo/StructuredData';
 import { generateSoftwareApplicationSchema, generateWebSiteWithSearchActionSchema } from '@/lib/utils/structured-data';
 
 export const metadata = generateSEO({
-  title: 'Open-Source All-in-One Agency Platform',
-  description: 'Run your whole agency on one open-source platform — websites, CRM, an AI brain, email, bookings & billing in 18 connected modules. Self-host it free (Apache-2.0), or use managed hosting from $19/seat/mo.',
+  title: 'All-in-One Intelligent Business Operating System',
+  description: 'Run your whole business on Hatrio — websites, CRM, an AI brain, email, bookings & billing in one unified, intelligent platform.',
   path: '/',
 });
 

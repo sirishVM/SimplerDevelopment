@@ -81,7 +81,7 @@ export default function ContactPage() {
               {[
                 {
                   title: 'Email',
-                  value: process.env.NEXT_PUBLIC_CONTACT_EMAIL || 'info@simplerdevelopment.com',
+                  value: process.env.NEXT_PUBLIC_CONTACT_EMAIL || 'support@hatrio.ai',
                   art: 'satellite',
                 },
                 {
