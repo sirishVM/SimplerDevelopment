@@ -65,7 +65,7 @@ export async function POST(req: Request) {
     domain: domain || null,
     description: description || null,
     subdomain,
-    vercelDomain: `${subdomain}.simplerdevelopment.com`,
+    vercelDomain: `${subdomain}.hatrio.ai`,
     deploymentStatus: 'pending',
     active: true,
   }).returning();

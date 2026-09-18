@@ -74,7 +74,7 @@ function PluginUpsell({
         </h1>
         <p className="text-sm text-muted-foreground max-w-xl mx-auto mb-6">
           This app is gated behind an entitlement you don&rsquo;t currently
-          have. Contact your account manager at Simpler Development to enable
+          have. Contact your account manager at Hatrio to enable
           it for your account.
         </p>
 
@@ -88,10 +88,10 @@ function PluginUpsell({
           </Link>
 
           <a
-            href={`mailto:${process.env.SUPPORT_EMAIL || 'support@simplerdevelopment.com'}`}
+            href={`mailto:${process.env.SUPPORT_EMAIL || 'support@hatrio.ai'}`}
             className="text-xs text-muted-foreground hover:underline"
           >
-            {process.env.SUPPORT_EMAIL || 'support@simplerdevelopment.com'}
+            {process.env.SUPPORT_EMAIL || 'support@hatrio.ai'}
           </a>
         </div>
 

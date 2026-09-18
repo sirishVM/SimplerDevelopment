@@ -39,7 +39,7 @@ function sharedCookieDomain(): string | undefined {
   // browser would reject every plugin cookie.
   const explicit = process.env.AUTH_COOKIE_DOMAIN?.trim();
   if (explicit) return explicit;
-  return process.env.VERCEL_ENV === 'production' ? '.simplerdevelopment.com' : undefined;
+  return process.env.VERCEL_ENV === 'production' ? '.hatrio.ai' : undefined;
 }
 
 export function pluginTenantCookieOptions(httpOnly: boolean) {

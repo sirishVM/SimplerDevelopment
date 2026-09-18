@@ -27,13 +27,18 @@ export async function POST(req: Request) {
     company: target.company,
   });
 
+  const host = req.headers.get('host') || '';
+  const cookieDomain = process.env.NODE_ENV === 'production'
+    ? (host.includes('hatrio.ai') ? '.hatrio.ai' : (host.includes('simplerdevelopment.com') ? '.simplerdevelopment.com' : undefined))
+    : undefined;
+
   response.cookies.set(COOKIE_NAME, String(target.id), {
     httpOnly: true,
     sameSite: 'lax',
     path: '/',
     maxAge: 60 * 60 * 24 * 365, // 1 year
     secure: process.env.NODE_ENV === 'production',
-    domain: process.env.NODE_ENV === 'production' ? '.simplerdevelopment.com' : undefined,
+    domain: cookieDomain,
   });
 
   return response;

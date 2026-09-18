@@ -17,19 +17,19 @@ const SKILLS = [
 
 const MCP_CONFIG_SNIPPET = `{
   "mcpServers": {
-    "simplerdevelopment": {
+    "hatrio": {
       "command": "npx",
       "args": [
         "-y",
         "mcp-remote",
-        "https://<your-tenant>.simplerdevelopment.com/api/mcp"
+        "https://<your-tenant>.hatrio.ai/api/mcp"
       ]
     }
   }
 }`;
 
 const MANUAL_CURL = `mkdir -p ~/.claude/skills && \\
-  curl -fsSL https://simplerdevelopment.com/api/skills/bundle \\
+  curl -fsSL https://hatrio.ai/api/skills/bundle \\
   | tar -xz -C ~/.claude/skills`;
 
 export function InstallClient() {
@@ -46,13 +46,13 @@ export function InstallClient() {
       <div className="mx-auto max-w-3xl px-6 py-16 sm:py-24">
         <header className="mb-12">
           <p className="mb-3 text-xs font-semibold uppercase tracking-[0.2em] text-primary">
-            SimplerDevelopment
+            Hatrio
           </p>
           <h1 className="text-4xl font-bold tracking-tight sm:text-5xl">
             Install the Claude skills
           </h1>
           <p className="mt-4 text-lg text-muted-foreground">
-            One-click installer for the SimplerDevelopment skills bundle. After installing,
+            One-click installer for the Hatrio skills bundle. After installing,
             you can draft pages, decks, emails, surveys, and full multi-page sites directly
             from Claude Desktop or Claude Code.
           </p>
@@ -64,7 +64,7 @@ export function InstallClient() {
           </h2>
           <div className="grid gap-4 sm:grid-cols-2">
             <a
-              href="/installers/SimplerDevelopmentSkills.pkg"
+              href="/installers/HatrioSkills.pkg"
               className="group flex flex-col items-start gap-2 rounded-lg border border-border bg-card p-6 transition-colors hover:border-primary"
               download
             >
@@ -73,7 +73,7 @@ export function InstallClient() {
               </span>
               <span className="text-lg font-semibold">macOS</span>
               <span className="text-sm text-muted-foreground">
-                Download <code className="rounded bg-muted px-1 py-0.5 text-xs">SimplerDevelopmentSkills.pkg</code>,
+                Download <code className="rounded bg-muted px-1 py-0.5 text-xs">HatrioSkills.pkg</code>,
                 then double-click in Finder to install.
               </span>
               <span className="mt-2 text-xs text-muted-foreground">
@@ -139,7 +139,7 @@ export function InstallClient() {
           <p className="mb-4 text-sm">
             Open <code className="rounded bg-muted px-1 py-0.5 text-xs">claude_desktop_config.json</code>{' '}
             (Settings → Developer → Edit Config in Claude Desktop) and add the{' '}
-            <code className="rounded bg-muted px-1 py-0.5 text-xs">simplerdevelopment</code>{' '}
+            <code className="rounded bg-muted px-1 py-0.5 text-xs">hatrio</code>{' '}
             entry under <code className="rounded bg-muted px-1 py-0.5 text-xs">mcpServers</code>.
           </p>
           <div className="rounded-lg border border-border bg-card p-4">

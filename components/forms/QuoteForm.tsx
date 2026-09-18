@@ -234,8 +234,8 @@ export function QuoteForm() {
         <div role="alert" className="rounded-md border border-red-500 bg-red-50 p-4">
           <p className="text-sm text-red-700">
             That didn’t send. Try again, or email{' '}
-            <a className="underline" href="mailto:info@simplerdevelopment.com">
-              info@simplerdevelopment.com
+            <a className="underline" href="mailto:support@hatrio.ai">
+              support@hatrio.ai
             </a>
             .
           </p>

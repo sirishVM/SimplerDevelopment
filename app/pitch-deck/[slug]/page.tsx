@@ -143,7 +143,7 @@ async function getTenantHostForDeck(clientId: number): Promise<string | null> {
     .orderBy(clientWebsites.id)
     .limit(1);
   if (!site) return null;
-  if (site.subdomain) return `${site.subdomain}.simplerdevelopment.com`;
+  if (site.subdomain) return `${site.subdomain}.hatrio.ai`;
   if (site.domain) return site.domain;
   return null;
 }

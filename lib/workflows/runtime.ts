@@ -400,7 +400,7 @@ export async function executeAction(
         const idempotencyKey =
           runId != null && nodeId ? `wf:${runId}:${nodeId}` : undefined;
         const fromEmail =
-          process.env.DEFAULT_FROM_EMAIL ?? 'noreply@simplerdevelopment.com';
+          process.env.DEFAULT_FROM_EMAIL ?? 'noreply@hatrio.ai';
 
         const result = await emailTransport.send({
           from: fromEmail,

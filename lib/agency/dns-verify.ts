@@ -76,8 +76,11 @@ export function isPlausibleDomain(domain: string): boolean {
   // No protocol, no path, no whitespace.
   if (/[\s/:?#]/.test(trimmed)) return false;
   // Reject our own apex — agencies should not be able to claim
-  // `simplerdevelopment.com` as a custom domain.
-  if (trimmed === 'simplerdevelopment.com' || trimmed.endsWith('.simplerdevelopment.com')) {
+  // `hatrio.ai` or `simplerdevelopment.com` as a custom domain.
+  if (
+    trimmed === 'hatrio.ai' || trimmed.endsWith('.hatrio.ai') ||
+    trimmed === 'simplerdevelopment.com' || trimmed.endsWith('.simplerdevelopment.com')
+  ) {
     return false;
   }
   // At least one dot, valid hostname labels.

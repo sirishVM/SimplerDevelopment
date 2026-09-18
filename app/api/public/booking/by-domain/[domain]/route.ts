@@ -6,8 +6,8 @@ import { eq, and, or, asc } from 'drizzle-orm';
 export async function GET(_req: Request, { params }: { params: Promise<{ domain: string }> }) {
   const { domain } = await params;
 
-  // Find site by domain, subdomain, or subdomain.simplerdevelopment.com
-  const bareSubdomain = domain.replace('.simplerdevelopment.com', '');
+  // Find site by domain, subdomain, or subdomain.hatrio.ai
+  const bareSubdomain = domain.replace('.hatrio.ai', '').replace('.simplerdevelopment.com', '');
   const [site] = await db
     .select({ id: clientWebsites.id, clientId: clientWebsites.clientId })
     .from(clientWebsites)

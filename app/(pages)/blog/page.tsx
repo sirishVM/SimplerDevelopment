@@ -8,7 +8,7 @@ import { RetroBadge, RetroButton } from '@/components/retro/primitives';
 
 export const metadata = generateSEO({
   title: 'Blog',
-  description: 'Insights, tutorials, and thoughts on web design, development, and automation from the SimplerDevelopment team.',
+  description: 'Insights, tutorials, and thoughts on web design, development, and automation from the Hatrio team.',
   path: '/blog',
 });
 

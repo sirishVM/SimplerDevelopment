@@ -45,7 +45,7 @@ export async function POST(req: Request) {
       company: body.company,
     });
 
-    const origin = process.env.NEXT_PUBLIC_SITE_URL ?? 'https://simplerdevelopment.com';
+    const origin = process.env.NEXT_PUBLIC_SITE_URL ?? 'https://hatrio.ai';
     const verifyUrl = `${origin}/api/auth/verify-email?token=${verificationToken}`;
 
     // In local dev there's usually no RESEND_API_KEY, so the email silently
@@ -64,7 +64,7 @@ export async function POST(req: Request) {
     let verificationSent = false;
     try {
       await sendEmail({
-        from: process.env.RESEND_FROM_EMAIL ?? 'SimplerDevelopment <noreply@simplerdevelopment.com>',
+        from: process.env.RESEND_FROM_EMAIL ?? 'Hatrio <noreply@hatrio.ai>',
         to: body.email.trim().toLowerCase(),
         subject: 'Verify your email to get started',
         html: [

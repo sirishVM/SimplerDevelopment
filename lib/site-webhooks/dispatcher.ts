@@ -56,11 +56,14 @@ async function attemptDelivery(
     const headers: Record<string, string> = {
       'Content-Type': 'application/json',
       'X-SD-Event': event,
+      'X-Hatrio-Event': event,
+      'X-Hatrio-Webhook-Id': String(webhookId),
       'X-SimplerDev-Event': event,
       'X-SimplerDev-Webhook-Id': String(webhookId),
     };
     if (secret) {
       const signature = signPayload(secret, body);
+      headers['X-Hatrio-Signature'] = `sha256=${signature}`;
       headers['X-SD-Signature'] = `sha256=${signature}`;
       headers['X-SimplerDev-Signature'] = `sha256=${signature}`;
     }

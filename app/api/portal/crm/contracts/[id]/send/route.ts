@@ -64,14 +64,14 @@ export async function POST(req: Request, { params }: { params: Promise<{ id: str
   }).where(eq(crmContracts.id, contractId));
 
   // Send signing emails to each signer
-  const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://simplerdevelopment.com';
-  const fromEmail = process.env.RESEND_FROM_EMAIL || 'noreply@simplerdevelopment.com';
+  const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://hatrio.ai';
+  const fromEmail = process.env.RESEND_FROM_EMAIL || 'noreply@hatrio.ai';
 
   for (const signer of signers) {
     const signingUrl = `${baseUrl}/contract/${signer.token}`;
     try {
       await resend.emails.send({
-        from: `${client.company || 'Simpler Development'} <${fromEmail}>`,
+        from: `${client.company || 'Hatrio'} <${fromEmail}>`,
         to: signer.email,
         subject: `Contract for your signature: ${contract.title}`,
         html: `

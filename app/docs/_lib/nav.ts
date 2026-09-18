@@ -50,7 +50,7 @@ export const NAV: NavGroup[] = [
   },
   {
     label: 'CLI',
-    items: [{ label: 'simpler CLI', slug: 'cli' }],
+    items: [{ label: 'Hatrio CLI', slug: 'cli' }],
   },
   {
     label: 'Browser Extension',

@@ -4,8 +4,8 @@ import { bookingPages, brandingProfiles, brandingMessaging, clients } from '@/li
 import { eq, and } from 'drizzle-orm';
 import crypto from 'crypto';
 
-const BASE_URL = process.env.NEXTAUTH_URL || 'https://simplerdevelopment.com';
-const FROM_EMAIL = process.env.RESEND_FROM_EMAIL || 'bookings@simplerdevelopment.com';
+const BASE_URL = process.env.NEXTAUTH_URL || 'https://hatrio.ai';
+const FROM_EMAIL = process.env.RESEND_FROM_EMAIL || 'bookings@hatrio.ai';
 
 /**
  * Brand snapshot threaded through the booking emails so confirmations,
@@ -135,7 +135,7 @@ function toIcsDate(date: Date): string {
 
 /** Generate an .ics calendar file for a booking */
 function generateIcs(data: BookingEmailData): string {
-  const uid = crypto.randomUUID() + '@simplerdevelopment.com';
+  const uid = crypto.randomUUID() + '@hatrio.ai';
   const now = toIcsDate(new Date());
   const dtStart = toIcsDate(data.startTime);
   const dtEnd = toIcsDate(data.endTime);
@@ -147,7 +147,7 @@ function generateIcs(data: BookingEmailData): string {
   return [
     'BEGIN:VCALENDAR',
     'VERSION:2.0',
-    'PRODID:-//SimplerDevelopment//Booking//EN',
+    'PRODID:-//Hatrio//Booking//EN',
     'CALSCALE:GREGORIAN',
     'METHOD:REQUEST',
     'BEGIN:VEVENT',
@@ -158,7 +158,7 @@ function generateIcs(data: BookingEmailData): string {
     `SUMMARY:${data.pageTitle}`,
     `DESCRIPTION:${description}`,
     location ? `LOCATION:${location}` : '',
-    `ORGANIZER;CN=SimplerDevelopment:mailto:${FROM_EMAIL}`,
+    `ORGANIZER;CN=Hatrio:mailto:${FROM_EMAIL}`,
     `ATTENDEE;CN=${data.guestName};RSVP=TRUE:mailto:${data.guestEmail}`,
     data.hostEmail ? `ATTENDEE;CN=Host;RSVP=TRUE:mailto:${data.hostEmail}` : '',
     'STATUS:CONFIRMED',
@@ -227,7 +227,7 @@ function bookingEmailHtml(content: string, previewText: string, brand?: BookingB
 
   const footerLine = brand?.companyName
     ? `${esc(brand.companyName)}${brand.tagline ? ` &middot; <span style="font-style:italic;">${esc(brand.tagline)}</span>` : ''}`
-    : 'Powered by SimplerDevelopment';
+    : 'Powered by Hatrio';
 
   return `<!DOCTYPE html>
 <html lang="en">
@@ -342,7 +342,7 @@ export async function sendHostNotification(
 
   const accent = brandAccent(data.brand);
   const heading = data.brand?.textColor ?? '#111827';
-  const fromBrandName = data.brand?.companyName ?? 'SimplerDevelopment';
+  const fromBrandName = data.brand?.companyName ?? 'Hatrio';
   const html = bookingEmailHtml(`
     <h1 style="margin:0 0 8px;font-size:24px;color:${heading};">New Booking</h1>
     <p style="margin:0 0 24px;font-size:14px;color:#6b7280;">You have a new appointment scheduled.</p>
@@ -476,7 +476,7 @@ export async function sendRescheduleEmail(data: {
   const formattedPrevious = formatDateTime(data.previousStartTime, data.timezone);
   const accent = brandAccent(data.brand);
   const heading = data.brand?.textColor ?? '#111827';
-  const fromBrandName = data.brand?.companyName ?? 'SimplerDevelopment';
+  const fromBrandName = data.brand?.companyName ?? 'Hatrio';
 
   const guestHtml = bookingEmailHtml(`
     <h1 style="margin:0 0 8px;font-size:24px;color:${heading};">Booking Rescheduled</h1>
@@ -584,7 +584,7 @@ export async function sendBookingReminder(data: BookingEmailData): Promise<void>
   const formattedEnd = formatTime(data.endTime, data.timezone);
   const accent = brandAccent(data.brand);
   const heading = data.brand?.textColor ?? '#111827';
-  const fromBrandName = data.brand?.companyName ?? 'SimplerDevelopment';
+  const fromBrandName = data.brand?.companyName ?? 'Hatrio';
 
   const html = bookingEmailHtml(`
     <p style="margin:0 0 8px;font-size:11px;font-weight:700;letter-spacing:0.18em;color:${accent};text-transform:uppercase;">Friendly reminder</p>

@@ -95,7 +95,7 @@ export function resolvePreviewBase(
   status: SiteStatus | null,
   windowHost: string | null,
 ): string | null {
-  const domain = status?.vercelDomain || (status?.subdomain ? `${status.subdomain}.simplerdevelopment.com` : null);
+  const domain = status?.vercelDomain || (status?.subdomain ? `${status.subdomain}.hatrio.ai` : null);
   if (!domain) return null;
   const onTenantHost = !!windowHost && windowHost === domain;
   return onTenantHost ? '' : `/sites/${domain}`;

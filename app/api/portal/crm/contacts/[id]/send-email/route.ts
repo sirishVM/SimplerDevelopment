@@ -63,8 +63,8 @@ export async function POST(
     );
 
   // Send email via Resend
-  const fromEmail = process.env.RESEND_FROM_EMAIL || 'noreply@simplerdevelopment.com';
-  const senderName = client.company || 'Simpler Development';
+  const fromEmail = process.env.RESEND_FROM_EMAIL || 'noreply@hatrio.ai';
+  const senderName = client.company || 'Hatrio';
 
   try {
     const result = await resend.emails.send({

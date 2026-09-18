@@ -87,7 +87,7 @@ export async function POST(req: Request, { params }: { params: Promise<{ id: str
         .toLowerCase()
         .replace(/[^a-z0-9]+/g, '')
         .slice(0, 60);
-      const derivedEmail = `${slug}@simplerdevelopment.com`;
+      const derivedEmail = `${slug}@hatrio.ai`;
       const [existingUser] = await tx
         .select({ id: users.id })
         .from(users)

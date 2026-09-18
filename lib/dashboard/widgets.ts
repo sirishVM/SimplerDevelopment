@@ -3,6 +3,8 @@
  * Defines all 22 available widgets with their metadata and visibility rules.
  */
 
+import { isSolutionActive } from '@/lib/active-modules';
+
 export type DashboardWidgetId =
   | 'metric-active-projects'
   | 'metric-open-tickets'
@@ -337,7 +339,7 @@ export function resolveVisibleWidgets(
   brainEnabled: boolean,
 ): { visible: DashboardWidgetDef[]; available: DashboardWidgetDef[] } {
   const available = DASHBOARD_WIDGETS.filter(
-    (w) => !(BRAIN_WIDGET_IDS.has(w.id) && !brainEnabled),
+    (w) => !(BRAIN_WIDGET_IDS.has(w.id) && !brainEnabled) && isSolutionActive(w.solution),
   );
 
   const hiddenSet = new Set(prefs.hidden ?? []);

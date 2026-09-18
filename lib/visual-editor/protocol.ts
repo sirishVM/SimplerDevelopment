@@ -4,6 +4,8 @@ import type {
 } from '@/types/visual-editor';
 
 const ALLOWED_ORIGINS = [
+  'hatrio.ai',
+  '.hatrio.ai',
   'simplerdevelopment.com',
   '.simplerdevelopment.com',
   '.up.railway.app',

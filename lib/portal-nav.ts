@@ -5,6 +5,7 @@
 
 import type { UserAppNavMeta } from '@/lib/plugins/load-user-apps';
 import type { FlagKey } from '@/lib/feature-flags';
+import { isDomainActive } from '@/lib/active-modules';
 
 export interface PortalNavChild {
   href: string;
@@ -57,6 +58,28 @@ export function pruneByFlags<T extends PortalNavChild>(nodes: T[], flags: Set<st
 }
 
 /**
+ * Recursively remove any node whose requiredDomain is not enabled in the
+ * master active modules allowlist (lib/active-modules.ts).
+ */
+export function pruneByActiveModules<T extends PortalNavChild>(nodes: T[]): T[] {
+  const out: T[] = [];
+  for (const node of nodes) {
+    if (node.requiredDomain && !isDomainActive(node.requiredDomain)) continue;
+    if (node.children) {
+      const filteredChildren = pruneByActiveModules(node.children);
+      // Prune parent group if all its children were domain-gated and removed
+      if (node.children.length > 0 && filteredChildren.length === 0 && !node.exact) {
+        continue;
+      }
+      out.push({ ...node, children: filteredChildren });
+    } else {
+      out.push(node);
+    }
+  }
+  return out;
+}
+
+/**
  * Build the full portal nav tree. Per-site branches are only included when
  * the user is already inside `/portal/websites/[siteId]/...` — palette callers
  * should pass `null` for activeSiteId when they don't have site context yet.
@@ -93,6 +116,7 @@ export function buildPortalNavItems(
 ): PortalNavItem[] {
   const items: PortalNavItem[] = [
     { href: '/portal/dashboard', label: 'Dashboard', icon: 'dashboard', keywords: ['home', 'overview'] },
+    // ── 1. Company Brain ────────────────────────────────────────────────
     {
       href: '/portal/brain',
       label: 'Company Brain',
@@ -101,10 +125,6 @@ export function buildPortalNavItems(
       requiredDomain: 'brain',
       keywords: ['ai', 'knowledge', 'brain'],
       children: [
-        // Calendar is intentionally hidden from sidebar + cmd-k. The page at
-        // /portal/brain/calendar still renders for direct URL navigation.
-        // Relationships is intentionally hidden from sidebar + cmd-k. The page
-        // at /portal/brain/relationships still renders for direct URL access.
         { href: '/portal/brain/tasks', label: 'Tasks', icon: 'checklist', alsoActiveOn: '/portal/brain/review', keywords: ['kanban', 'review queue', 'todo', 'communications'] },
         { href: '/portal/brain/initiatives', label: 'Initiatives', icon: 'flag', keywords: ['programs', 'projects', 'okr', 'objectives', 'cross-functional', 'multi-quarter'] },
         { href: '/portal/brain/goals', label: 'Goals', icon: 'track_changes', keywords: ['okr', 'objectives', 'kpi', 'metrics', 'progress'] },
@@ -125,6 +145,35 @@ export function buildPortalNavItems(
         { href: '/portal/brain/settings', label: 'Settings', icon: 'settings', keywords: ['brain settings'] },
       ],
     },
+    // ── 2. AI Connect (MCP) ──────────────────────────────────────────────
+    {
+      href: '/portal/brain/ask',
+      label: 'AI Connect (MCP)',
+      icon: 'cable',
+      keywords: ['mcp', 'ai connect', 'tools', 'ask brain', 'api', 'connect ai'],
+    },
+    // ── 3. AI Chatbot ───────────────────────────────────────────────────
+    {
+      href: '/portal/inbox',
+      label: 'AI Chatbot',
+      icon: 'smart_toy',
+      keywords: ['ai chatbot', 'live chat', 'conversations', 'messages', 'chat', 'inbox'],
+      children: [
+        { href: '/portal/inbox', label: 'Live Chat & Inbox', icon: 'forum', exact: true, keywords: ['chat', 'conversations', 'messages', 'live chat', 'inbox'] },
+        { href: '/portal/settings/ai', label: 'Chatbot Config', icon: 'tune', keywords: ['bot config', 'prompt', 'temperature', 'model'] },
+      ],
+    },
+    // ── 4. Help Desk ────────────────────────────────────────────────────
+    {
+      href: '/portal/tickets',
+      label: 'Help Desk',
+      icon: 'support_agent',
+      keywords: ['help desk', 'support', 'requests', 'tickets', 'sla'],
+      children: [
+        { href: '/portal/tickets', label: 'All Tickets', icon: 'support_agent', exact: true, keywords: ['help desk', 'support', 'requests'] },
+      ],
+    },
+
     {
       href: '/portal/projects',
       label: 'Projects',
@@ -173,8 +222,6 @@ export function buildPortalNavItems(
       keywords: ['seo', 'site audit', 'crawler', 'technical seo', 'search console', 'rankings'],
     },
     {
-      // Marketing groups the outbound/content surfaces so they don't each take
-      // a top-level slot. Each child keeps its own requiredDomain gate.
       href: '/portal/marketing',
       label: 'Marketing',
       icon: 'campaign',
@@ -230,8 +277,6 @@ export function buildPortalNavItems(
       ],
     },
     {
-      // Websites consolidates the site list, Media, A/B experiments, and (when
-      // inside a site) that site's content/store/settings tree.
       href: '/portal/websites',
       label: 'Websites',
       icon: 'language',
@@ -285,23 +330,10 @@ export function buildPortalNavItems(
       ],
     },
     {
-      // ── Account cluster (below the divider) ──────────────────────────────
-      // Support surfaces grouped so they don't each take a top-level slot.
-      href: '/portal/tickets',
-      label: 'Support',
-      icon: 'support_agent',
-      dividerBefore: true,
-      keywords: ['help desk', 'support', 'requests', 'tickets', 'chat', 'inbox', 'live chat'],
-      children: [
-        { href: '/portal/tickets', label: 'Tickets', icon: 'support_agent', exact: true, keywords: ['help desk', 'support', 'requests'] },
-        { href: '/portal/inbox', label: 'Live Chat', icon: 'forum', keywords: ['chat', 'conversations', 'messages', 'live chat', 'inbox'] },
-      ],
-    },
-    {
-      // Billing & account surfaces (invoices, purchasable services, hosting).
       href: '/portal/invoices',
       label: 'Billing',
       icon: 'receipt_long',
+      requiredDomain: 'billing',
       keywords: ['billing', 'payments', 'charges', 'invoices', 'services', 'subscriptions', 'add-ons', 'hosting', 'dns', 'domains'],
       children: [
         { href: '/portal/settings/billing', label: 'Invoices', icon: 'receipt_long', exact: true, keywords: ['billing', 'payments', 'charges'] },
@@ -309,13 +341,12 @@ export function buildPortalNavItems(
         { href: '/portal/hosting', label: 'Hosting', icon: 'dns', keywords: ['dns', 'domains', 'servers'] },
       ],
     },
-    // MCP Approvals is intentionally hidden from sidebar + cmd-k. The page
-    // at /portal/approvals still renders for direct URL access.
     {
       href: '/portal/agency',
       label: 'Agency',
       icon: 'storefront',
       exact: true,
+      requiredDomain: 'agency',
       keywords: ['white label', 'white-label', 'reseller', 'custom domain', 'agency branding', 'saas mode', 'scale'],
       children: [
         { href: '/portal/agency', label: 'Overview', icon: 'storefront', exact: true },
@@ -323,7 +354,7 @@ export function buildPortalNavItems(
         { href: '/portal/agency/branding', label: 'Agency Branding', icon: 'palette', keywords: ['logo', 'wordmark', 'agency name'] },
       ],
     },
-    { href: '/portal/settings', label: 'Settings', icon: 'settings', keywords: ['account', 'team', 'billing'] },
+    { href: '/portal/settings', label: 'Settings', icon: 'settings', dividerBefore: true, keywords: ['account', 'team', 'billing'] },
   ];
 
   // Inject the "Apps" group before Settings when the caller supplied a list
@@ -370,6 +401,11 @@ export function buildPortalNavItems(
   const pruned = pruneByFlags<PortalNavItem>(items, flags);
   items.length = 0;
   items.push(...pruned);
+
+  // Master active modules allowlist pruning (lib/active-modules.ts)
+  const activePruned = pruneByActiveModules<PortalNavItem>(items);
+  items.length = 0;
+  items.push(...activePruned);
 
   // Apply entitlement gating: when entitlements are provided and gating is
   // active, mark items and their children as locked when the required domain

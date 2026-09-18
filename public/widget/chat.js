@@ -1,5 +1,5 @@
 /*!
- * SimplerDevelopment chat widget loader.
+ * Hatrio chat widget loader.
  *
  * Embed:
  *   <script src="https://your-portal/widget/chat.js" data-widget-id="42" async></script>

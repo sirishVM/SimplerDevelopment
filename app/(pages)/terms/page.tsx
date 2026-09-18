@@ -16,7 +16,7 @@ import { PageHeader, CreamBand } from '@/components/retro/sections';
 export const metadata = generateSEO({
   title: 'Terms of Service',
   description:
-    'The terms governing your use of the SimplerDevelopment platform, APIs, connectors, and related services.',
+    'The terms governing your use of the Hatrio platform, APIs, connectors, and related services.',
   path: '/terms',
 });
 
@@ -40,7 +40,7 @@ export default function TermsOfServicePage() {
       <CreamBand>
         <div className="mx-auto max-w-[70ch]">
           <p className="text-base leading-relaxed text-[color-mix(in_srgb,var(--retro-ink)_82%,transparent)]">
-            These Terms of Service (“Terms”) govern your access to and use of the SimplerDevelopment platform, websites, APIs, and connectors (the “Service”). By using the Service, you agree to these Terms.
+            These Terms of Service (“Terms”) govern your access to and use of the Hatrio platform, websites, APIs, and connectors (the “Service”). By using the Service, you agree to these Terms.
           </p>
 
           <div className="mt-10 divide-y divide-[color-mix(in_srgb,var(--retro-mid)_35%,transparent)]">
@@ -55,7 +55,7 @@ export default function TermsOfServicePage() {
 
             <LegalSection heading="2. The Service">
               <p>
-                SimplerDevelopment provides a multi-tenant platform that may include a client portal,
+                Hatrio provides a multi-tenant platform that may include a client portal,
                 hosted websites, a CRM, an AI-powered “Company Brain,” marketing and automation tools,
                 and integrations and connectors with third-party services. We may add, change, or remove
                 features over time.
@@ -194,8 +194,8 @@ export default function TermsOfServicePage() {
 
             <LegalSection heading="17. Contact Us">
               <p>
-                SimplerDevelopment — [Legal entity name], [Mailing address]. Email{' '}
-                <a href="mailto:info@simplerdevelopment.com">info@simplerdevelopment.com</a>.
+                Hatrio. Email{' '}
+                <a href="mailto:support@hatrio.ai">support@hatrio.ai</a>.
               </p>
             </LegalSection>
           </div>
@@ -203,8 +203,8 @@ export default function TermsOfServicePage() {
           <div className="mt-16 border-t border-[color-mix(in_srgb,var(--retro-mid)_35%,transparent)] pt-8 text-sm text-[color-mix(in_srgb,var(--retro-ink)_70%,transparent)]">
             <p className="mb-2">
               Questions about this document? Contact us at{' '}
-              <a href="mailto:info@simplerdevelopment.com" className="font-semibold text-[var(--retro-orange)] hover:underline">
-                info@simplerdevelopment.com
+              <a href="mailto:support@hatrio.ai" className="font-semibold text-[var(--retro-orange)] hover:underline">
+                support@hatrio.ai
               </a>
               .
             </p>

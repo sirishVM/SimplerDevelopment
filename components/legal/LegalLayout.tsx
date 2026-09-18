@@ -31,8 +31,8 @@ export function LegalLayout({
         <div className="mt-16 border-t border-border pt-8 text-sm text-muted-foreground">
           <p className="mb-2">
             Questions about this document? Contact us at{' '}
-            <a href="mailto:info@simplerdevelopment.com" className="text-primary hover:underline">
-              info@simplerdevelopment.com
+            <a href="mailto:support@hatrio.ai" className="text-primary hover:underline">
+              support@hatrio.ai
             </a>
             .
           </p>

@@ -48,8 +48,8 @@ export const runtime = 'nodejs';
  * `app/api/cron/failing-automations-notify/route.ts`).
  */
 
-const BASE_URL = process.env.NEXTAUTH_URL || 'https://simplerdevelopment.com';
-const FROM_EMAIL = process.env.RESEND_FROM_EMAIL || 'portal@simplerdevelopment.com';
+const BASE_URL = process.env.NEXTAUTH_URL || 'https://hatrio.ai';
+const FROM_EMAIL = process.env.RESEND_FROM_EMAIL || 'portal@hatrio.ai';
 const EMAILS_ENABLED = process.env.MCP_APPROVAL_EMAILS_ENABLED !== 'false';
 
 type DigestRow = {

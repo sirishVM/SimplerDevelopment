@@ -83,8 +83,8 @@ export async function GET(
     const baseUrl = website?.domain
       ? `https://${website.domain}`
       : website?.subdomain
-        ? `https://${website.subdomain}.simplerdevelopment.com`
-        : (process.env.NEXTAUTH_URL || 'https://simplerdevelopment.com');
+        ? `https://${website.subdomain}.hatrio.ai`
+        : (process.env.NEXTAUTH_URL || 'https://hatrio.ai');
 
     const redirectUrl = `${baseUrl}/store/cart?recovered=1`;
 

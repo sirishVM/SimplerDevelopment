@@ -12,6 +12,7 @@ import {
   VOLUME_TIERS,
   SEAT_PRICE_CAP_CENTS,
 } from '@/lib/billing/domain-catalog';
+import { isDomainActive } from '@/lib/active-modules';
 
 interface ModuleItem {
   key: string;
@@ -27,7 +28,7 @@ const BUNDLE_KEY = 'bundle';
 
 // Where BYOK ("bring your own AI key") enquiries go — no self-serve price.
 const BYOK_MAILTO =
-  'mailto:sales@simplerdevelopment.com?subject=BYOK%20pricing%20—%20bring%20your%20own%20AI%20key';
+  'mailto:sales@hatrio.ai?subject=BYOK%20pricing%20—%20bring%20your%20own%20AI%20key';
 
 export function StepChooseModules({ state, setAnswers, persist, next }: StepProps) {
   const [modules, setModules] = useState<ModuleItem[]>([]);
@@ -58,22 +59,24 @@ export function StepChooseModules({ state, setAnswers, persist, next }: StepProp
       .then((r) => r.json())
       .then((json) => {
         if (json.success) {
-          const items: ModuleItem[] = (json.data?.modules ?? []).map(
-            (m: { key: string; slug: string; name: string; tagline: string; icon: string; monthlyPriceCents: number; purchasable?: boolean }) => ({
-              key: m.key,
-              slug: m.slug,
-              name: m.name,
-              tagline: m.tagline,
-              icon: m.icon,
-              monthlyPriceCents: m.monthlyPriceCents,
-              purchasable: m.purchasable !== false,
-            }),
-          );
+          const items: ModuleItem[] = (json.data?.modules ?? [])
+            .filter((m: { key: string }) => isDomainActive(m.key))
+            .map(
+              (m: { key: string; slug: string; name: string; tagline: string; icon: string; monthlyPriceCents: number; purchasable?: boolean }) => ({
+                key: m.key,
+                slug: m.slug,
+                name: m.name,
+                tagline: m.tagline,
+                icon: m.icon,
+                monthlyPriceCents: m.monthlyPriceCents,
+                purchasable: m.purchasable !== false,
+              }),
+            );
           setModules(items);
         } else {
           // Fallback to static catalog
           setModules(
-            FEATURE_DOMAINS.map((d) => ({
+            FEATURE_DOMAINS.filter((d) => isDomainActive(d.key)).map((d) => ({
               key: d.key,
               slug: d.slug,
               name: d.name,
@@ -87,7 +90,7 @@ export function StepChooseModules({ state, setAnswers, persist, next }: StepProp
       })
       .catch(() => {
         setModules(
-          FEATURE_DOMAINS.map((d) => ({
+          FEATURE_DOMAINS.filter((d) => isDomainActive(d.key)).map((d) => ({
             key: d.key,
             slug: d.slug,
             name: d.name,
@@ -335,7 +338,7 @@ export function StepChooseModules({ state, setAnswers, persist, next }: StepProp
                   onClick={switchToBundle}
                   className="underline text-primary hover:text-primary/80 font-medium"
                 >
-                  switch to SimplerDev Complete
+                  switch to Hatrio Complete
                 </button>
               </p>
             </div>

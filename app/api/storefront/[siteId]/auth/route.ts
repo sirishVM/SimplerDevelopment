@@ -208,8 +208,8 @@ export async function POST(req: NextRequest, { params }: { params: Promise<{ sit
         const baseUrl = site?.domain
           ? `https://${site.domain}`
           : site?.subdomain
-            ? `https://${site.subdomain}.simplerdevelopment.com`
-            : process.env.NEXTAUTH_URL || 'https://simplerdevelopment.com';
+            ? `https://${site.subdomain}.hatrio.ai`
+            : process.env.NEXTAUTH_URL || 'https://hatrio.ai';
 
         sendTransactionalEmail({
           websiteId,

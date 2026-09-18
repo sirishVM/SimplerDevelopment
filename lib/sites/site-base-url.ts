@@ -12,5 +12,5 @@ export function siteBaseUrl(site: {
     ? `https://${site.domain}`
     : site.vercelDomain
       ? `https://${site.vercelDomain}`
-      : `https://${site.subdomain}.simplerdevelopment.com`;
+      : `https://${site.subdomain}.hatrio.ai`;
 }

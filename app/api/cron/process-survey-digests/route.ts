@@ -48,8 +48,8 @@ import { resolveSurveyRecipients } from '@/lib/automation/survey-notifications';
 export const dynamic = 'force-dynamic';
 export const runtime = 'nodejs';
 
-const BASE_URL = process.env.NEXTAUTH_URL || process.env.NEXT_PUBLIC_SITE_URL || 'https://simplerdevelopment.com';
-const FROM_EMAIL = process.env.RESEND_FROM_EMAIL || 'noreply@simplerdevelopment.com';
+const BASE_URL = process.env.NEXTAUTH_URL || process.env.NEXT_PUBLIC_SITE_URL || 'https://hatrio.ai';
+const FROM_EMAIL = process.env.RESEND_FROM_EMAIL || 'noreply@hatrio.ai';
 
 const DAY_MS = 24 * 60 * 60 * 1000;
 const PERIOD_MS: Record<string, number> = { daily: DAY_MS, weekly: 7 * DAY_MS };

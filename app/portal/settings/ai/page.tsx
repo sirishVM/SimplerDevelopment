@@ -363,7 +363,7 @@ export default function AISettingsPage() {
               className="w-40 px-3 py-2 rounded-l-lg border border-r-0 border-border bg-background text-foreground text-sm focus:outline-none focus:ring-2 focus:ring-primary/40"
             />
             <span className="px-3 py-2 bg-muted border border-border rounded-r-lg text-sm text-muted-foreground whitespace-nowrap">
-              @simplerdevelopment.com
+              @hatrio.ai
             </span>
           </div>
           <button
@@ -388,7 +388,7 @@ export default function AISettingsPage() {
         {emailPrefix && (
           <div className="flex items-center gap-2 text-xs text-muted-foreground">
             <span className="material-icons text-sm text-green-500">check_circle</span>
-            Active: <span className="font-mono text-foreground">{emailPrefix.toLowerCase().replace(/[^a-z0-9-]/g, '')}@simplerdevelopment.com</span>
+            Active: <span className="font-mono text-foreground">{emailPrefix.toLowerCase().replace(/[^a-z0-9-]/g, '')}@hatrio.ai</span>
           </div>
         )}
       </div>

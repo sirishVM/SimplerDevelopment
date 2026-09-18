@@ -15,7 +15,7 @@ export async function provisionWebsite(
   subdomain: string,
   description: string,
 ): Promise<void> {
-  const fullDomain = `${subdomain}.simplerdevelopment.com`;
+  const fullDomain = `${subdomain}.hatrio.ai`;
 
   try {
     // Step 1: Mark as provisioning
@@ -71,7 +71,7 @@ export async function provisionWebsite(
     }
 
     // Step 3c: Set CMS environment variables so the starter can fetch content
-    const cmsApiUrl = process.env.CMS_API_URL || 'https://simplerdevelopment.com';
+    const cmsApiUrl = process.env.CMS_API_URL || 'https://hatrio.ai';
     await setEnvVars(vercelId!, [
       { key: 'CMS_API_URL', value: cmsApiUrl },
       { key: 'SITE_ID', value: String(siteId) },
@@ -118,7 +118,7 @@ export async function provisionWebsite(
     if (existingEnvs.length === 0) {
       await db.insert(websiteEnvironments).values([
         { websiteId: siteId, name: 'production', vercelTarget: 'production' },
-        { websiteId: siteId, name: 'staging', vercelTarget: 'preview', previewUrl: `https://${subdomain}-git-staging-simplerdevelopment.vercel.app` },
+        { websiteId: siteId, name: 'staging', vercelTarget: 'preview', previewUrl: `https://${subdomain}-git-staging.vercel.app` },
       ]);
     }
 
@@ -156,8 +156,8 @@ export async function changeSubdomain(
   newSubdomain: string,
   vercelProjectId: string | null,
 ): Promise<void> {
-  const oldDomain = `${oldSubdomain}.simplerdevelopment.com`;
-  const newDomain = `${newSubdomain}.simplerdevelopment.com`;
+  const oldDomain = `${oldSubdomain}.hatrio.ai`;
+  const newDomain = `${newSubdomain}.hatrio.ai`;
 
   if (vercelProjectId) {
     // Dedicated Vercel project — update domain on Vercel
@@ -179,7 +179,7 @@ export async function changeSubdomain(
     }
   } else {
     // Shared hosting — CNAME points to the platform's Railway domain
-    const platformDomain = process.env.RAILWAY_PUBLIC_DOMAIN || 'simplerdevelopment.com';
+    const platformDomain = process.env.RAILWAY_PUBLIC_DOMAIN || 'hatrio.ai';
     await createCnameRecord(newSubdomain, platformDomain);
   }
 

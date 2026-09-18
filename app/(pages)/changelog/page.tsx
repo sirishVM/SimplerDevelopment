@@ -7,7 +7,7 @@ import { RetroBadge, Star } from '@/components/retro/primitives';
 export const metadata = generateSEO({
   title: 'Changelog',
   description:
-    'What’s new in SimplerDevelopment — the open-source, MCP-native all-in-one agency platform. Release notes and product updates.',
+    'What’s new in Hatrio — the MCP-native all-in-one business platform. Release notes and product updates.',
   path: '/changelog',
 });
 
@@ -24,7 +24,7 @@ const entries: Entry[] = [
   {
     version: 'v1.0',
     date: 'June 2026',
-    tagline: 'Public launch — the full platform, open source and MCP-native.',
+    tagline: 'Public launch — the full platform, intelligent and MCP-native.',
     sections: [
       {
         label: 'Added',
@@ -34,7 +34,7 @@ const entries: Entry[] = [
           'Operate with AI: the Company Brain — a per-tenant RAG knowledge base over pgvector — and a 200+ tool MCP server so Claude, Cursor, or any MCP client can drive the whole platform.',
           'Run the business: storefront & commerce, invoicing & Stripe billing, e-signature contracts, projects & kanban, and a help desk with SLA tracking.',
           'Agency: white-label custom domains, branding profiles, and managed hosting.',
-          'Apache-2.0 licensed and self-hostable — bring your own Postgres and API keys, or use the managed cloud.',
+          'Cloud & dedicated hosting — high-performance Postgres and API connectivity.',
         ],
       },
     ],

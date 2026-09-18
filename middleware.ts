@@ -31,6 +31,11 @@ const APP_HOSTNAMES = new Set([
   '127.0.0.1',
   '127.0.0.1:3000',
   '127.0.0.1:3100',
+  'hatrio.ai',
+  'www.hatrio.ai',
+  'app.hatrio.ai',
+  'staging.hatrio.ai',
+  'dev.hatrio.ai',
   'simplerdevelopment.com',
   'www.simplerdevelopment.com',
   'staging.simplerdevelopment.com',
@@ -60,18 +65,26 @@ function isAppHostname(host: string): boolean {
 }
 
 /**
- * Extract the subdomain from a hostname if it's a *.simplerdevelopment.com address.
- * Returns null for bare simplerdevelopment.com or non-matching hostnames.
+ * Extract the subdomain from a hostname if it's a *.hatrio.ai or *.simplerdevelopment.com address.
+ * Returns null for bare domains or non-matching hostnames.
  */
 function extractSubdomain(host: string): string | null {
   const bare = host.split(':')[0]; // strip port
-  const appDomains = ['simplerdevelopment.com', 'www.simplerdevelopment.com'];
+  const appDomains = [
+    'hatrio.ai',
+    'www.hatrio.ai',
+    'app.hatrio.ai',
+    'simplerdevelopment.com',
+    'www.simplerdevelopment.com',
+  ];
   for (const base of appDomains) {
     if (bare === base) return null; // bare domain, not a subdomain
   }
-  if (bare.endsWith('.simplerdevelopment.com')) {
-    const sub = bare.replace('.simplerdevelopment.com', '');
-    if (sub && !sub.includes('.')) return sub;
+  for (const apex of ['.hatrio.ai', '.simplerdevelopment.com']) {
+    if (bare.endsWith(apex)) {
+      const sub = bare.replace(apex, '');
+      if (sub && !sub.includes('.')) return sub;
+    }
   }
   return null;
 }

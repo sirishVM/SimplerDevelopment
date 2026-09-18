@@ -7,7 +7,7 @@ import { SectionHeading, StatBlock, OrbitDivider } from '@/components/retro/prim
 export const metadata = generateSEO({
   title: 'About Us',
   description:
-    'Simpler Development replaces the stack of disconnected tools small businesses juggle — website, email, CRM, booking, projects — with one platform, backed by a team that helps you use it.',
+    'Hatrio replaces the stack of disconnected tools modern businesses juggle — website, email, CRM, booking, projects, and an AI brain — with one unified platform.',
   path: '/about',
 });
 

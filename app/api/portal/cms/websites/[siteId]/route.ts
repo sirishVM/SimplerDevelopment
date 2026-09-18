@@ -60,13 +60,13 @@ export async function PUT(
         const { createCnameRecord } = await import('@/lib/cloudflare-dns');
         if (site.vercelProjectId) {
           const { addDomain, getDomainConfig } = await import('@/lib/vercel');
-          const fullDomain = `${subdomain}.simplerdevelopment.com`;
+          const fullDomain = `${subdomain}.hatrio.ai`;
           await addDomain(site.vercelProjectId, fullDomain);
           const config = await getDomainConfig(fullDomain);
           const target = config.cnames[0] || 'cname.vercel-dns.com';
           await createCnameRecord(subdomain, target);
         } else {
-          const platformDomain = process.env.RAILWAY_PUBLIC_DOMAIN || 'simplerdevelopment.com';
+          const platformDomain = process.env.RAILWAY_PUBLIC_DOMAIN || 'hatrio.ai';
           await createCnameRecord(subdomain, platformDomain);
         }
       }
@@ -81,7 +81,7 @@ export async function PUT(
   if (description !== undefined) updates.description = description.trim() || null;
   if (subdomain !== undefined) {
     updates.subdomain = subdomain || null;
-    updates.vercelDomain = subdomain ? `${subdomain}.simplerdevelopment.com` : null;
+    updates.vercelDomain = subdomain ? `${subdomain}.hatrio.ai` : null;
   }
   if (githubRepoName !== undefined) updates.githubRepoName = githubRepoName?.trim() || null;
   if (githubRepoUrl !== undefined) updates.githubRepoUrl = githubRepoUrl?.trim() || null;

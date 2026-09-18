@@ -94,9 +94,9 @@ export async function POST(
 
     if (body.create && body.accountId) {
       // Create a new GA4 property
-      const domain = site.domain || site.subdomain
-        ? `${site.subdomain}.simplerdevelopment.com`
-        : site.name;
+      const domain = site.domain || (site.subdomain
+        ? `${site.subdomain}.hatrio.ai`
+        : site.name);
 
       const propRes = await analyticsAdmin.properties.create({
         requestBody: {

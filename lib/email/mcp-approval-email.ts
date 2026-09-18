@@ -14,8 +14,8 @@ import { and, eq, gt, inArray, sql } from 'drizzle-orm';
 import { resend } from './index';
 import { shouldDeliverNotification } from '@/lib/crm/notifications';
 
-const BASE_URL = process.env.NEXTAUTH_URL || 'https://simplerdevelopment.com';
-const FROM_EMAIL = process.env.RESEND_FROM_EMAIL || 'portal@simplerdevelopment.com';
+const BASE_URL = process.env.NEXTAUTH_URL || 'https://hatrio.ai';
+const FROM_EMAIL = process.env.RESEND_FROM_EMAIL || 'portal@hatrio.ai';
 const COOLDOWN_MINUTES = 10;
 const EMAILS_ENABLED = process.env.MCP_APPROVAL_EMAILS_ENABLED !== 'false';
 

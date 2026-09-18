@@ -16,9 +16,8 @@ import { ATTRIBUTION_COOKIE, parseAttributionCookie, type Attribution } from '@/
 // shows up.
 const HONEYPOT_FIELD = 'website';
 
-// Where contact-form submissions are delivered.
-const CONTACT_INBOX = process.env.CONTACT_INBOX || 'info@simplerdevelopment.com';
-const FROM_EMAIL = process.env.RESEND_FROM_EMAIL || 'SimplerDevelopment <noreply@simplerdevelopment.com>';
+const CONTACT_INBOX = process.env.CONTACT_INBOX || 'support@hatrio.ai';
+const FROM_EMAIL = process.env.RESEND_FROM_EMAIL || 'Hatrio <noreply@hatrio.ai>';
 
 // This is SimplerDevelopment's OWN marketing form, not a tenant route — there
 // is no session and no site-resolver to derive a tenant from, so the owning

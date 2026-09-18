@@ -38,8 +38,8 @@ import { isAuthorizedCron } from '@/lib/cron-auth';
 export const dynamic = 'force-dynamic';
 export const runtime = 'nodejs';
 
-const FROM_EMAIL = process.env.RESEND_FROM_EMAIL || 'surveys@simplerdevelopment.com';
-const FROM_NAME = 'Simpler Development';
+const FROM_EMAIL = process.env.RESEND_FROM_EMAIL || 'surveys@hatrio.ai';
+const FROM_NAME = 'Hatrio';
 const MAX_SENDS_PER_TICK = 100;
 
 /**

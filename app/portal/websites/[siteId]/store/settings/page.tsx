@@ -456,7 +456,7 @@ export default function StoreSettingsPage() {
   const stripeMode = settings?.stripeMode ?? 'connect';
   const stripeByokAllowed = settings?.stripeByokAllowed ?? false;
   const stripeWebhookUrl = `${
-    (typeof process !== 'undefined' && process.env.NEXT_PUBLIC_APP_URL) || 'https://app.simplerdevelopment.com'
+    (typeof process !== 'undefined' && process.env.NEXT_PUBLIC_APP_URL) || 'https://app.hatrio.ai'
   }/api/stripe/webhook/ecommerce?siteId=${siteId}`;
 
   const copyWebhookUrl = async () => {
@@ -1291,20 +1291,20 @@ export default function StoreSettingsPage() {
             <div>
               <p className="text-foreground font-medium">Stripe BYOK is not enabled for this site.</p>
               <p className="text-muted-foreground mt-1">
-                Contact SimplerDevelopment to enable using your own Stripe account.
+                Contact Hatrio to enable using your own Stripe account.
               </p>
             </div>
           </div>
         ) : (
           <>
             <p className="text-sm text-muted-foreground">
-              Choose whether payments route through SimplerDevelopment Connect or your own Stripe account (BYOK).
+              Choose whether payments route through Hatrio Connect or your own Stripe account (BYOK).
             </p>
 
             {/* Mode radio */}
             <div className="flex flex-wrap gap-3">
               {([
-                { value: 'connect' as const, label: 'Connect', icon: 'hub', desc: 'Default — SimplerDevelopment Connect' },
+                { value: 'connect' as const, label: 'Connect', icon: 'hub', desc: 'Default — Hatrio Connect' },
                 { value: 'byok' as const, label: 'BYOK', icon: 'vpn_key', desc: 'Your own Stripe account' },
               ]).map((opt) => (
                 <label

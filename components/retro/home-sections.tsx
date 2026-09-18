@@ -70,25 +70,43 @@ export function CrewLanes({ lanes }: { lanes: CrewLane[] }) {
 
 // ─── Systems manifest ───────────────────────────────────────────────────────
 
-export type ManifestModule = { title: string; description: string; href: string; tag?: string };
+export type ManifestModule = {
+  title: string;
+  description: string;
+  href: string;
+  tag?: string;
+  status?: 'available' | 'coming_soon';
+};
 
 /**
  * The module inventory, numbered 01..N.
  *
  * The numbering IS the argument here — the section claims eighteen modules and
- * the running index is the proof — which is the one case where a numeric rail
- * earns its place. It follows that `lead` and `rest` must be a REORDER of the
- * full list and never a subset: a jump from 02 to 13 reads as a rendering bug
- * and quietly undermines the count the section exists to make.
+ * the running index is the proof. The 4 live modules are highlighted with
+ * Available Now indicators, while the remaining 14 are marked Coming Soon.
  */
 export function ModuleManifest({ lead, rest }: { lead: ManifestModule[]; rest: ManifestModule[] }) {
   return (
     <>
-      <Grid className="mb-px">
+      <div className="mb-3 flex items-center justify-between px-1">
+        <span className="text-xs font-semibold uppercase tracking-wider text-emerald-700 dark:text-emerald-400 flex items-center gap-1.5">
+          <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
+          4 Active Modules (Live Now)
+        </span>
+        <span className="text-xs font-medium text-muted-foreground">
+          14 Modules In Development
+        </span>
+      </div>
+      <Grid className="mb-px sm:grid-cols-2 lg:grid-cols-2">
         {lead.map((m, i) => (
           <ModuleCell key={m.href} module={m} index={i + 1} lead />
         ))}
       </Grid>
+      <div className="my-4 px-1">
+        <span className="text-xs font-semibold uppercase tracking-wider text-muted-foreground">
+          Upcoming Modules (In Pipeline)
+        </span>
+      </div>
       <Grid>
         {rest.map((m, i) => (
           <ModuleCell key={m.href} module={m} index={lead.length + i + 1} />
@@ -111,11 +129,19 @@ function Grid({ children, className = '' }: { children: ReactNode; className?: s
 }
 
 function ModuleCell({ module: m, index, lead = false }: { module: ManifestModule; index: number; lead?: boolean }) {
+  const isAvailable = m.status === 'available' || m.tag === 'Available Now';
+
   return (
     <Link
       href={m.href}
-      className={`grid grid-cols-[auto_1fr] gap-x-4 gap-y-1 bg-[color-mix(in_srgb,#ffffff_26%,var(--retro-cream))] transition-colors hover:bg-[color-mix(in_srgb,var(--retro-gold)_16%,var(--retro-cream))] ${
-        lead ? 'p-7' : 'px-5 py-4'
+      className={`grid grid-cols-[auto_1fr] gap-x-4 gap-y-1 transition-colors ${
+        isAvailable
+          ? lead
+            ? 'p-7 bg-[color-mix(in_srgb,#ffffff_60%,var(--retro-cream))] hover:bg-[color-mix(in_srgb,var(--retro-gold)_24%,var(--retro-cream))] ring-1 ring-emerald-500/25'
+            : 'px-5 py-4 bg-[color-mix(in_srgb,#ffffff_40%,var(--retro-cream))] hover:bg-[color-mix(in_srgb,var(--retro-gold)_16%,var(--retro-cream))]'
+          : lead
+            ? 'p-7 bg-[color-mix(in_srgb,#ffffff_26%,var(--retro-cream))] hover:bg-[color-mix(in_srgb,var(--retro-gold)_16%,var(--retro-cream))]'
+            : 'px-5 py-4 bg-[color-mix(in_srgb,#ffffff_18%,var(--retro-cream))] opacity-85 hover:opacity-100 hover:bg-[color-mix(in_srgb,var(--retro-gold)_10%,var(--retro-cream))]'
       }`}
     >
       <span
@@ -125,9 +151,21 @@ function ModuleCell({ module: m, index, lead = false }: { module: ManifestModule
       >
         {String(index).padStart(2, '0')}
       </span>
-      <h3 className={`font-display font-bold leading-snug text-[var(--retro-ink)] ${lead ? 'text-xl' : 'text-base'}`}>
-        {m.title}
-      </h3>
+      <div className="flex items-center justify-between gap-2 flex-wrap">
+        <h3 className={`font-display font-bold leading-snug text-[var(--retro-ink)] ${lead ? 'text-xl' : 'text-base'}`}>
+          {m.title}
+        </h3>
+        {isAvailable ? (
+          <span className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full text-[0.65rem] font-bold tracking-wider uppercase bg-emerald-100 text-emerald-800 dark:bg-emerald-950/50 dark:text-emerald-300 border border-emerald-300 dark:border-emerald-800 shrink-0">
+            <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse" />
+            Available Now
+          </span>
+        ) : (
+          <span className="inline-flex items-center px-2 py-0.5 rounded-full text-[0.65rem] font-medium tracking-wider uppercase bg-stone-200/70 text-stone-700 dark:bg-stone-800/70 dark:text-stone-300 border border-stone-300 dark:border-stone-700 shrink-0">
+            Coming Soon
+          </span>
+        )}
+      </div>
       <p
         className={`leading-relaxed text-[color-mix(in_srgb,var(--retro-ink)_74%,var(--retro-cream))] ${
           lead ? 'text-sm' : 'text-[0.8rem]'
@@ -135,7 +173,7 @@ function ModuleCell({ module: m, index, lead = false }: { module: ManifestModule
       >
         {m.description}
       </p>
-      {m.tag && (
+      {m.tag && m.tag !== 'Available Now' && m.tag !== 'Coming Soon' && (
         <span className="font-display col-start-2 mt-2 flex items-center gap-2 text-[0.7rem] font-bold uppercase tracking-[0.16em] text-[var(--retro-label)]">
           <Star className="h-2.5 w-2.5 text-[var(--retro-gold)]" />
           {m.tag}

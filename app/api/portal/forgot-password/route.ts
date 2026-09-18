@@ -7,8 +7,8 @@ import { resend } from '@/lib/email';
 import { hashToken } from '@/lib/security/token-hash';
 import { checkRateLimit, getClientIp, isAuthRateLimitDisabled } from '@/lib/security/rate-limit';
 
-const FROM_EMAIL = process.env.RESEND_FROM_EMAIL || 'noreply@simplerdevelopment.com';
-const BASE_URL = process.env.NEXTAUTH_URL || 'https://simplerdevelopment.com';
+const FROM_EMAIL = process.env.RESEND_FROM_EMAIL || 'Hatrio <noreply@hatrio.ai>';
+const BASE_URL = process.env.NEXTAUTH_URL || 'https://hatrio.ai';
 
 export async function POST(req: Request) {
   // 5 requests per 15 minutes per IP — prevents automated reset-token harvesting

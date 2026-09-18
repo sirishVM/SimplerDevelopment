@@ -83,7 +83,7 @@ export default async function PortalDesignerEntryPage({ params }: PageProps) {
   // then the simpledevelopment.com subdomain. We use the canonical /sites/
   // route which works for any of these. Hoisted above the legacy design
   // lookup so the new-designer branch (below) can redirect without it.
-  const host = site.domain || site.vercelDomain || (site.subdomain ? `${site.subdomain}.simplerdevelopment.com` : null);
+  const host = site.domain || site.vercelDomain || (site.subdomain ? `${site.subdomain}.hatrio.ai` : null);
   if (!host) notFound();
 
   // Always the Print Designer. The legacy designer was retired once the cart

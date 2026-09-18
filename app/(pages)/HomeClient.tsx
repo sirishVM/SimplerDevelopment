@@ -50,47 +50,56 @@ const GITHUB_URL = siteConfig.links.github;
 // Descriptions stay factual; the retro voice lives in the headings and
 // connective copy around them, not in claims about what the software does.
 //
-// Split into lead/rest to give the manifest a hierarchy: the three the platform
-// is actually sold on take a larger cell. It is a REORDER of the eighteen, not
-// a subset — the running index has to stay contiguous 01..18 because the count
-// is the section's whole argument.
+// The 18 platform modules — these are the modules of the platform.
+// The 4 currently live modules (Company Brain, AI Connect MCP, AI Chatbot, and
+// Help Desk) lead the manifest with "Available Now" badges, while the remaining
+// 14 are tagged "Coming Soon".
 const leadModules: ManifestModule[] = [
-  {
-    title: 'AI Connect (MCP)',
-    description: 'Connect any MCP client and operate the whole platform via 200+ scoped tools',
-    href: '/solutions/ai-connect',
-    tag: 'Operate it by agent',
-  },
   {
     title: 'Company Brain',
     description: 'AI knowledge base (RAG over pgvector) that answers questions about your business with citations',
     href: '/solutions/company-brain',
-    tag: 'Answers with citations',
+    tag: 'Available Now',
+    status: 'available',
   },
   {
-    title: 'Website Builder',
-    description: 'Drag-and-drop editor with unlimited pages, blog, SEO, and ecommerce',
-    href: '/solutions/websites',
-    tag: 'Visual editor',
+    title: 'AI Connect (MCP)',
+    description: 'Connect any MCP client and operate the whole platform via 200+ scoped tools',
+    href: '/solutions/ai-connect',
+    tag: 'Available Now',
+    status: 'available',
+  },
+  {
+    title: 'AI Chatbot',
+    description: 'Trained on your content for 24/7 customer support and automated lead capture',
+    href: '/solutions/ai-chatbot',
+    tag: 'Available Now',
+    status: 'available',
+  },
+  {
+    title: 'Help Desk',
+    description: 'Embeddable live chat plus a shared team inbox and SLA-tracked support tickets',
+    href: '/solutions/help-desk',
+    tag: 'Available Now',
+    status: 'available',
   },
 ];
 
 const restModules: ManifestModule[] = [
-  { title: 'Online Store', description: 'Sell products with variants, discounts, shipping, and print-on-demand designs', href: '/solutions/ecommerce' },
-  { title: 'Content Calendar', description: 'Editorial kanban and calendar to plan, schedule, and ship content across channels', href: '/solutions/publishing' },
-  { title: 'Email Marketing', description: 'Campaigns, subscriber lists, automations, and engagement tracking', href: '/solutions/email-marketing' },
-  { title: 'CRM', description: 'Contacts, deals, proposals, and your full sales pipeline', href: '/solutions/crm' },
-  { title: 'Contracts & E-Sign', description: 'Branded proposals and legally binding contracts with built-in e-signature', href: '/solutions/contracts' },
-  { title: 'Online Booking', description: 'Scheduling pages with calendar sync and automatic reminders', href: '/solutions/booking' },
-  { title: 'Surveys & Forms', description: 'Smart forms with branching logic, scoring, and auto-routing to your CRM', href: '/solutions/surveys' },
-  { title: 'A/B Experiments', description: 'Split-test pages and pitch deck slides with built-in significance testing', href: '/solutions/experiments' },
-  { title: 'Project Management', description: 'Kanban boards, sprint planning, and team collaboration', href: '/solutions/project-management' },
-  { title: 'Help Desk', description: 'Embeddable live chat plus a shared inbox and SLA-tracked support tickets', href: '/solutions/help-desk' },
-  { title: 'AI Chatbot', description: 'Trained on your content for 24/7 support and lead capture', href: '/solutions/ai-chatbot' },
-  { title: 'Automations', description: 'Visual no-code workflows that connect every tool automatically', href: '/solutions/automations' },
-  { title: 'Pitch Decks', description: 'AI-generated, branded pitch decks with shareable links and PDF export', href: '/solutions/pitch-decks' },
-  { title: 'Agency & White-Label', description: 'Run the platform under your own brand with a custom domain and logo', href: '/solutions/agency' },
-  { title: 'Managed Hosting', description: 'SSL, CDN, daily backups, and 99.9% uptime — or self-host it yourself', href: '/solutions/hosting' },
+  { title: 'Website Builder', description: 'Drag-and-drop editor with unlimited pages, blog, SEO, and ecommerce', href: '/solutions/websites', status: 'coming_soon' },
+  { title: 'Online Store', description: 'Sell products with variants, discounts, shipping, and print-on-demand designs', href: '/solutions/ecommerce', status: 'coming_soon' },
+  { title: 'Content Calendar', description: 'Editorial kanban and calendar to plan, schedule, and ship content across channels', href: '/solutions/publishing', status: 'coming_soon' },
+  { title: 'Email Marketing', description: 'Campaigns, subscriber lists, automations, and engagement tracking', href: '/solutions/email-marketing', status: 'coming_soon' },
+  { title: 'CRM', description: 'Contacts, deals, proposals, and your full sales pipeline', href: '/solutions/crm', status: 'coming_soon' },
+  { title: 'Contracts & E-Sign', description: 'Branded proposals and legally binding contracts with built-in e-signature', href: '/solutions/contracts', status: 'coming_soon' },
+  { title: 'Online Booking', description: 'Scheduling pages with calendar sync and automatic reminders', href: '/solutions/booking', status: 'coming_soon' },
+  { title: 'Surveys & Forms', description: 'Smart forms with branching logic, scoring, and auto-routing to your CRM', href: '/solutions/surveys', status: 'coming_soon' },
+  { title: 'A/B Experiments', description: 'Split-test pages and pitch deck slides with built-in significance testing', href: '/solutions/experiments', status: 'coming_soon' },
+  { title: 'Project Management', description: 'Kanban boards, sprint planning, and team collaboration', href: '/solutions/project-management', status: 'coming_soon' },
+  { title: 'Automations', description: 'Visual no-code workflows that connect every tool automatically', href: '/solutions/automations', status: 'coming_soon' },
+  { title: 'Pitch Decks', description: 'AI-generated, branded pitch decks with shareable links and PDF export', href: '/solutions/pitch-decks', status: 'coming_soon' },
+  { title: 'Agency & White-Label', description: 'Run the platform under your own brand with a custom domain and logo', href: '/solutions/agency', status: 'coming_soon' },
+  { title: 'Managed Hosting', description: 'SSL, CDN, daily backups, and 99.9% uptime — or self-host it yourself', href: '/solutions/hosting', status: 'coming_soon' },
 ];
 
 // The five verbs below are the five lane titles, in lane order. Keep them in
@@ -190,8 +199,8 @@ export function HomeClient({ recentPosts = [] }: { recentPosts?: BlogPostWithRel
         accent="One Platform."
         subtitle={
           <>
-            Websites, CRM, an AI brain, email, bookings and billing — eighteen modules that
-            already talk to each other, so you can stop paying six vendors to almost integrate.
+            Company Brain, AI Connect (MCP), AI Chatbot, and Help Desk — four integrated modules
+            available now, with fourteen more modules actively in development.
           </>
         }
         primary={{ href: '/portal/signup', label: 'Get Started Free' }}
@@ -199,9 +208,9 @@ export function HomeClient({ recentPosts = [] }: { recentPosts?: BlogPostWithRel
         video
         footnote={
           <>
-            <span>★ All-in-one platform</span>
-            <span>★ 200+ AI tools</span>
-            <span>★ Enterprise security</span>
+            <span>★ 4 Modules Live Now</span>
+            <span>★ 200+ AI Tools</span>
+            <span>★ 14 In Development</span>
           </>
         }
       />
@@ -230,12 +239,12 @@ export function HomeClient({ recentPosts = [] }: { recentPosts?: BlogPostWithRel
 
       <OrbitDivider />
 
-      {/* Claim: nothing on the list is gated. */}
+      {/* Claim: 4 modules available now, 14 coming soon. */}
       <CreamBand>
         <SectionHeading
           eyebrow="Systems manifest"
-          title="Eighteen Modules. Zero Duct Tape."
-          subtitle="Every one ships in the box, on every plan. Nothing on this list is an add-on, an upgrade tier, or an integration you have to maintain yourself."
+          title="18 Integrated Modules — 4 Available Now."
+          subtitle="Company Brain, AI Connect (MCP), AI Chatbot, and Help Desk are live and ready to use today. Fourteen additional modules are rolling out next."
         />
         <ModuleManifest lead={leadModules} rest={restModules} />
       </CreamBand>

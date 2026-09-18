@@ -72,6 +72,8 @@ async function attemptDelivery(
     const headers: Record<string, string> = {
       'Content-Type': 'application/json',
       'X-SD-Event': event,
+      'X-Hatrio-Event': event,
+      'X-Hatrio-Webhook-Id': String(webhookId),
       'X-SimplerDev-Event': event,
       'X-SimplerDev-Webhook-Id': String(webhookId),
     };
@@ -79,6 +81,7 @@ async function attemptDelivery(
       const signature = signPayload(secret, body);
       // Spec says X-SD-Signature; mirror the project-webhook X-SimplerDev-* set
       // so existing tooling that consumes either prefix keeps working.
+      headers['X-Hatrio-Signature'] = `sha256=${signature}`;
       headers['X-SD-Signature'] = `sha256=${signature}`;
       headers['X-SimplerDev-Signature'] = `sha256=${signature}`;
     }
