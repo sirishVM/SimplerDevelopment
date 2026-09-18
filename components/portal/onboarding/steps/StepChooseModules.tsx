@@ -12,6 +12,7 @@ import {
   VOLUME_TIERS,
   SEAT_PRICE_CAP_CENTS,
 } from '@/lib/billing/domain-catalog';
+import { isDomainActive } from '@/lib/active-modules';
 
 interface ModuleItem {
   key: string;
@@ -58,22 +59,24 @@ export function StepChooseModules({ state, setAnswers, persist, next }: StepProp
       .then((r) => r.json())
       .then((json) => {
         if (json.success) {
-          const items: ModuleItem[] = (json.data?.modules ?? []).map(
-            (m: { key: string; slug: string; name: string; tagline: string; icon: string; monthlyPriceCents: number; purchasable?: boolean }) => ({
-              key: m.key,
-              slug: m.slug,
-              name: m.name,
-              tagline: m.tagline,
-              icon: m.icon,
-              monthlyPriceCents: m.monthlyPriceCents,
-              purchasable: m.purchasable !== false,
-            }),
-          );
+          const items: ModuleItem[] = (json.data?.modules ?? [])
+            .filter((m: { key: string }) => isDomainActive(m.key))
+            .map(
+              (m: { key: string; slug: string; name: string; tagline: string; icon: string; monthlyPriceCents: number; purchasable?: boolean }) => ({
+                key: m.key,
+                slug: m.slug,
+                name: m.name,
+                tagline: m.tagline,
+                icon: m.icon,
+                monthlyPriceCents: m.monthlyPriceCents,
+                purchasable: m.purchasable !== false,
+              }),
+            );
           setModules(items);
         } else {
           // Fallback to static catalog
           setModules(
-            FEATURE_DOMAINS.map((d) => ({
+            FEATURE_DOMAINS.filter((d) => isDomainActive(d.key)).map((d) => ({
               key: d.key,
               slug: d.slug,
               name: d.name,
@@ -87,7 +90,7 @@ export function StepChooseModules({ state, setAnswers, persist, next }: StepProp
       })
       .catch(() => {
         setModules(
-          FEATURE_DOMAINS.map((d) => ({
+          FEATURE_DOMAINS.filter((d) => isDomainActive(d.key)).map((d) => ({
             key: d.key,
             slug: d.slug,
             name: d.name,

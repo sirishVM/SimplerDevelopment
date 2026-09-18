@@ -5,6 +5,7 @@
 
 import type { UserAppNavMeta } from '@/lib/plugins/load-user-apps';
 import type { FlagKey } from '@/lib/feature-flags';
+import { isDomainActive } from '@/lib/active-modules';
 
 export interface PortalNavChild {
   href: string;
@@ -52,6 +53,28 @@ export function pruneByFlags<T extends PortalNavChild>(nodes: T[], flags: Set<st
         ? { ...node, children: pruneByFlags(node.children, flags) }
         : node,
     );
+  }
+  return out;
+}
+
+/**
+ * Recursively remove any node whose requiredDomain is not enabled in the
+ * master active modules allowlist (lib/active-modules.ts).
+ */
+export function pruneByActiveModules<T extends PortalNavChild>(nodes: T[]): T[] {
+  const out: T[] = [];
+  for (const node of nodes) {
+    if (node.requiredDomain && !isDomainActive(node.requiredDomain)) continue;
+    if (node.children) {
+      const filteredChildren = pruneByActiveModules(node.children);
+      // Prune parent group if all its children were domain-gated and removed
+      if (node.children.length > 0 && filteredChildren.length === 0 && !node.exact) {
+        continue;
+      }
+      out.push({ ...node, children: filteredChildren });
+    } else {
+      out.push(node);
+    }
   }
   return out;
 }
@@ -151,7 +174,6 @@ export function buildPortalNavItems(
       ],
     },
 
-    /* ── Inactive modules temporarily commented out (only 4 active modules for now) ──
     {
       href: '/portal/projects',
       label: 'Projects',
@@ -311,6 +333,7 @@ export function buildPortalNavItems(
       href: '/portal/invoices',
       label: 'Billing',
       icon: 'receipt_long',
+      requiredDomain: 'billing',
       keywords: ['billing', 'payments', 'charges', 'invoices', 'services', 'subscriptions', 'add-ons', 'hosting', 'dns', 'domains'],
       children: [
         { href: '/portal/settings/billing', label: 'Invoices', icon: 'receipt_long', exact: true, keywords: ['billing', 'payments', 'charges'] },
@@ -323,6 +346,7 @@ export function buildPortalNavItems(
       label: 'Agency',
       icon: 'storefront',
       exact: true,
+      requiredDomain: 'agency',
       keywords: ['white label', 'white-label', 'reseller', 'custom domain', 'agency branding', 'saas mode', 'scale'],
       children: [
         { href: '/portal/agency', label: 'Overview', icon: 'storefront', exact: true },
@@ -330,7 +354,6 @@ export function buildPortalNavItems(
         { href: '/portal/agency/branding', label: 'Agency Branding', icon: 'palette', keywords: ['logo', 'wordmark', 'agency name'] },
       ],
     },
-    ── end inactive modules ── */
     { href: '/portal/settings', label: 'Settings', icon: 'settings', dividerBefore: true, keywords: ['account', 'team', 'billing'] },
   ];
 
@@ -378,6 +401,11 @@ export function buildPortalNavItems(
   const pruned = pruneByFlags<PortalNavItem>(items, flags);
   items.length = 0;
   items.push(...pruned);
+
+  // Master active modules allowlist pruning (lib/active-modules.ts)
+  const activePruned = pruneByActiveModules<PortalNavItem>(items);
+  items.length = 0;
+  items.push(...activePruned);
 
   // Apply entitlement gating: when entitlements are provided and gating is
   // active, mark items and their children as locked when the required domain
