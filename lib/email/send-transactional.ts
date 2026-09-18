@@ -23,7 +23,7 @@ import { getDefaultTemplates } from './default-email-templates';
 import { applyBrandingToBlocks, brandingProfileToEmailBranding } from './apply-branding-to-blocks';
 import type { Block, BlockEditorData } from '@/types/blocks';
 
-const FROM_EMAIL = process.env.RESEND_FROM_EMAIL || 'noreply@simplerdevelopment.com';
+const FROM_EMAIL = process.env.RESEND_FROM_EMAIL || 'noreply@hatrio.ai';
 
 interface SendTransactionalEmailOptions {
   websiteId: number;
@@ -75,7 +75,7 @@ function wrapEmailHtml(innerHtml: string, previewText?: string): string {
           <tr>
             <td style="padding:16px 40px;background:#f9fafb;border-top:1px solid #e5e7eb;text-align:center;">
               <p style="margin:0;font-size:12px;color:#9ca3af;">
-                Powered by SimplerDevelopment
+                Powered by Hatrio
               </p>
             </td>
           </tr>
@@ -129,7 +129,7 @@ async function getWebsiteInfo(websiteId: number) {
     .where(eq(clientWebsites.id, websiteId))
     .limit(1);
 
-  const baseUrl = process.env.NEXTAUTH_URL || 'https://simplerdevelopment.com';
+  const baseUrl = process.env.NEXTAUTH_URL || 'https://hatrio.ai';
   // The domain slug used in /sites/[domain] routes
   const domainSlug = site?.domain || site?.subdomain || '';
 

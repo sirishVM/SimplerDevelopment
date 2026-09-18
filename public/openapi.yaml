@@ -1,23 +1,23 @@
 openapi: 3.1.0
 
 info:
-  title: SimplerDevelopment REST v1 API
+  title: Hatrio REST v1 API
   version: 1.0.0
   description: >
-    Authenticated headless CMS / commerce surface for SimplerDevelopment sites.
+    Authenticated headless CMS / commerce surface for Hatrio sites.
     Every request is site-scoped, rate-limited, and returns a consistent
     { success, data | message } JSON envelope.
   contact:
-    email: info@simplerdevelopment.com
+    email: support@hatrio.ai
 
 servers:
   - url: https://{tenantDomain}/api/v1
-    description: SimplerDevelopment tenant domain
+    description: Hatrio tenant domain
     variables:
       tenantDomain:
-        default: simplerdevelopment.com
+        default: hatrio.ai
         description: >
-          Your portal domain (e.g. yourcompany.simplerdevelopment.com or a custom domain).
+          Your portal domain (e.g. yourcompany.hatrio.ai or a custom domain).
 
 security:
   - BearerAuth: []

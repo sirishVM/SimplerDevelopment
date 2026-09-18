@@ -23,21 +23,22 @@ export async function POST() {
   const cookieNames = [...bases, ...bases.map((n) => `__Secure-${n}`), 'sd-active-client'];
 
   for (const name of cookieNames) {
-    // Clear on the bare/host domain (the only scope in dev/insecure config).
+    // Clear host-scoped cookie
     response.cookies.set(name, '', {
       expires: new Date(0),
       path: '/',
       secure: secure,
-      domain: secure ? 'simplerdevelopment.com' : undefined,
     });
-    // Prod also scopes cookies to the wildcard domain — clear that too.
+    // Also clear wildcard domains
     if (secure) {
-      response.cookies.set(name, '', {
-        expires: new Date(0),
-        path: '/',
-        secure: true,
-        domain: '.simplerdevelopment.com',
-      });
+      for (const d of ['.hatrio.ai', '.simplerdevelopment.com']) {
+        response.cookies.set(name, '', {
+          expires: new Date(0),
+          path: '/',
+          secure: true,
+          domain: d,
+        });
+      }
     }
   }
 

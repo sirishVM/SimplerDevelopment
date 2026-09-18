@@ -58,8 +58,8 @@ export async function POST(req: Request) {
       tokens: String(pkg.tokens),
       packageName: pkg.name,
     },
-    success_url: `${process.env.NEXT_PUBLIC_SITE_URL || 'https://simplerdevelopment.com'}/portal/dashboard?credits=purchased`,
-    cancel_url: `${process.env.NEXT_PUBLIC_SITE_URL || 'https://simplerdevelopment.com'}/portal/dashboard`,
+    success_url: `${process.env.NEXT_PUBLIC_SITE_URL || 'https://hatrio.ai'}/portal/dashboard?credits=purchased`,
+    cancel_url: `${process.env.NEXT_PUBLIC_SITE_URL || 'https://hatrio.ai'}/portal/dashboard`,
   });
 
   return NextResponse.json({ url: checkoutSession.url });

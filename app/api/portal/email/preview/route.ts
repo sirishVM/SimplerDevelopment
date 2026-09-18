@@ -112,7 +112,7 @@ export async function POST(req: NextRequest) {
     try {
       const placeholderUnsub = buildUnsubscribeUrl('test-' + Date.now());
       const testHtml = html.replace(/\{\{UNSUBSCRIBE_URL\}\}/g, placeholderUnsub);
-      const fromEmail = process.env.EMAIL_TEST_FROM ?? 'noreply@simplerdevelopment.com';
+      const fromEmail = process.env.EMAIL_TEST_FROM ?? 'noreply@hatrio.ai';
       await resend.emails.send({
         from: `Block Builder Test <${fromEmail}>`,
         to: userEmail,

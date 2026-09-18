@@ -83,9 +83,10 @@ export default function PortalLayoutClient({ children, apps, entitlements }: Por
 
   // Auto-resolve subdomain portal: e.g. acme.simplerdevelopment.com/portal
   useEffect(() => {
-    const hostname = window.location.hostname;
-    if (hostname.endsWith('.simplerdevelopment.com') && hostname !== 'simplerdevelopment.com' && hostname !== 'www.simplerdevelopment.com') {
-      const subdomain = hostname.replace('.simplerdevelopment.com', '');
+    const isHatrio = hostname.endsWith('.hatrio.ai') && hostname !== 'hatrio.ai' && hostname !== 'www.hatrio.ai';
+    const isSimplerDev = hostname.endsWith('.simplerdevelopment.com') && hostname !== 'simplerdevelopment.com' && hostname !== 'www.simplerdevelopment.com';
+    if (isHatrio || isSimplerDev) {
+      const subdomain = isHatrio ? hostname.replace('.hatrio.ai', '') : hostname.replace('.simplerdevelopment.com', '');
       if (subdomain && !subdomain.includes('.')) {
         fetch(`/api/portal/resolve-subdomain?subdomain=${encodeURIComponent(subdomain)}`)
           .then(r => r.ok ? r.json() : null)

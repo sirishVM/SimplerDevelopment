@@ -21,7 +21,7 @@ import { verifyCheckoutSession } from '@/components/portal/billing/verify-checko
 
 // Where BYOK ("bring your own AI key") enquiries go — no self-serve price.
 const BYOK_MAILTO =
-  'mailto:sales@simplerdevelopment.com?subject=BYOK%20pricing%20—%20bring%20your%20own%20AI%20key';
+  'mailto:sales@hatrio.ai?subject=BYOK%20pricing%20—%20bring%20your%20own%20AI%20key';
 
 // ── Types ─────────────────────────────────────────────────────────────────────
 
@@ -437,7 +437,7 @@ function BillingPlansInner() {
           <div>
             <p className="font-display font-extrabold tracking-[-0.01em] text-foreground">Everything is included in your managed plan</p>
             <p className="text-sm text-muted-foreground">
-              Your plan is managed by SimplerDevelopment. Contact us to make changes.
+              Your plan is managed by Hatrio. Contact us to make changes.
             </p>
           </div>
         </div>

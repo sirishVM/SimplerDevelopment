@@ -32,7 +32,7 @@ function buildNotificationUrls(originHint?: string): { notificationUrl: string; 
     originHint ??
     process.env.NEXTAUTH_URL ??
     process.env.PUBLIC_APP_URL ??
-    'https://www.simplerdevelopment.com';
+    'https://www.hatrio.ai';
   const trimmed = base.replace(/\/$/, '');
   return {
     notificationUrl: `${trimmed}/api/microsoft-webhook/transcripts`,

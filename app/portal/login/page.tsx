@@ -96,9 +96,13 @@ function LoginForm() {
         // preview the hop would bounce the user OFF the preview to production and
         // the host-only preview cookie wouldn't follow. In both cases, stay put —
         // the just-issued session is scoped to the current host.
-        const onSimplerDevHost = window.location.hostname.endsWith('.simplerdevelopment.com');
-        if (onSimplerDevHost && subData.subdomain && window.location.hostname !== `${subData.subdomain}.simplerdevelopment.com`) {
-          window.location.href = `https://${subData.subdomain}.simplerdevelopment.com${callbackUrl}`;
+        const apexDomain = window.location.hostname.endsWith('.hatrio.ai')
+          ? 'hatrio.ai'
+          : window.location.hostname.endsWith('.simplerdevelopment.com')
+          ? 'simplerdevelopment.com'
+          : null;
+        if (apexDomain && subData.subdomain && window.location.hostname !== `${subData.subdomain}.${apexDomain}`) {
+          window.location.href = `https://${subData.subdomain}.${apexDomain}${callbackUrl}`;
           return;
         }
       } catch {}
@@ -123,12 +127,15 @@ function LoginForm() {
         body: JSON.stringify({ clientId: portal.clientId }),
       });
 
-      // Only hop to the subdomain when already on a simplerdevelopment.com host
-      // (see handleSubmit) — never from localhost or a *.vercel.app preview.
-      const onSimplerDevHost = window.location.hostname.endsWith('.simplerdevelopment.com');
-      if (portal.subdomain && onSimplerDevHost) {
+      // Only hop to the subdomain when already on a platform host
+      const apexDomain = window.location.hostname.endsWith('.hatrio.ai')
+        ? 'hatrio.ai'
+        : window.location.hostname.endsWith('.simplerdevelopment.com')
+        ? 'simplerdevelopment.com'
+        : null;
+      if (portal.subdomain && apexDomain) {
         // eslint-disable-next-line react-hooks/immutability -- pre-existing pattern, predates this change
-        window.location.href = `https://${portal.subdomain}.simplerdevelopment.com${callbackUrl}`;
+        window.location.href = `https://${portal.subdomain}.${apexDomain}${callbackUrl}`;
       } else {
         // eslint-disable-next-line react-hooks/immutability -- pre-existing pattern, predates this change
         window.location.href = callbackUrl;
@@ -159,7 +166,7 @@ function LoginForm() {
               <div className="min-w-0 flex-1">
                 <span className="block truncate text-sm font-semibold text-foreground">{portal.company}</span>
                 {portal.subdomain && (
-                  <span className="text-xs text-muted-foreground">{portal.subdomain}.simplerdevelopment.com</span>
+                  <span className="text-xs text-muted-foreground">{portal.subdomain}.hatrio.ai</span>
                 )}
               </div>
               <span className="material-icons text-muted-foreground transition group-hover:translate-x-0.5 group-hover:text-primary">arrow_forward</span>

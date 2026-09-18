@@ -50,7 +50,7 @@ export default function BrainConnectPage() {
     | null
   >(null);
 
-  const [origin, setOrigin] = useState<string>('https://app.simplerdevelopment.com');
+  const [origin, setOrigin] = useState<string>('https://app.hatrio.ai');
 
   useEffect(() => {
     if (typeof window !== 'undefined') {
@@ -140,7 +140,7 @@ export default function BrainConnectPage() {
     return JSON.stringify(
       {
         mcpServers: {
-          'simplerdevelopment-brain': {
+          'hatrio-brain': {
             command: 'npx',
             args: [
               '-y',
@@ -388,7 +388,7 @@ export default function BrainConnectPage() {
           <li>
             Brain tools appear automatically. Try{' '}
             <code className="text-xs px-1 py-0.5 bg-muted rounded">/mcp</code> in Claude Desktop to
-            verify <code className="text-xs px-1 py-0.5 bg-muted rounded">simplerdevelopment-brain</code>{' '}
+            verify <code className="text-xs px-1 py-0.5 bg-muted rounded">hatrio-brain</code>{' '}
             is listed.
           </li>
         </ol>

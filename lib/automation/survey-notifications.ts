@@ -29,8 +29,8 @@ import { and, eq, inArray } from 'drizzle-orm';
 import { onEvent, type AutomationEvent } from './event-bus';
 import { resend } from '@/lib/email';
 
-const FROM_EMAIL = process.env.RESEND_FROM_EMAIL || 'noreply@simplerdevelopment.com';
-const BASE_URL = process.env.NEXTAUTH_URL || process.env.NEXT_PUBLIC_SITE_URL || 'https://simplerdevelopment.com';
+const FROM_EMAIL = process.env.RESEND_FROM_EMAIL || 'noreply@hatrio.ai';
+const BASE_URL = process.env.NEXTAUTH_URL || process.env.NEXT_PUBLIC_SITE_URL || 'https://hatrio.ai';
 
 interface SurveyResponsePayload {
   surveyId: number;

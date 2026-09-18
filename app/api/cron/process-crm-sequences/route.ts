@@ -29,8 +29,8 @@ import { resend } from '@/lib/email';
 export const dynamic = 'force-dynamic';
 export const runtime = 'nodejs';
 
-const FROM_EMAIL = process.env.RESEND_FROM_EMAIL || 'crm@simplerdevelopment.com';
-const FROM_NAME = 'Simpler Development';
+const FROM_EMAIL = process.env.RESEND_FROM_EMAIL || 'crm@hatrio.ai';
+const FROM_NAME = 'Hatrio';
 const MAX_SENDS_PER_TICK = 100;
 
 async function _GET(req: Request): Promise<Response> {

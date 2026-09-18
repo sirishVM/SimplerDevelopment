@@ -119,7 +119,7 @@ export default async function WebsiteSettingsPage({
           <GitHubConnectButton siteId={site.id} />
           <GoogleConnectionCard
             siteId={site.id}
-            websiteDomain={site.domain || (site.subdomain ? `${site.subdomain}.simplerdevelopment.com` : null)}
+            websiteDomain={site.domain || (site.subdomain ? `${site.subdomain}.hatrio.ai` : null)}
             websiteName={site.name}
           />
         </>

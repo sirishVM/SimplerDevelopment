@@ -17,7 +17,7 @@ const TABS: { id: ClientId; label: string; icon: string }[] = [
 
 export default function ConnectAiPage() {
   const [tab, setTab] = useState<ClientId>('claude-web');
-  const [origin, setOrigin] = useState('https://simplerdevelopment.com');
+  const [origin, setOrigin] = useState('https://hatrio.ai');
 
   // Detect the actual origin client-side to avoid hardcoding the domain.
   // Must be in useEffect (not render body) to prevent a hydration mismatch.
@@ -131,7 +131,7 @@ function ClaudeWebInstructions({ endpoint }: { endpoint: string }) {
         <li>
           Fill in the form:
           <ul className="list-disc ml-5 mt-1 text-muted-foreground space-y-0.5">
-            <li>Name: <code className="text-xs px-1 py-0.5 bg-muted rounded">SimplerDevelopment</code></li>
+            <li>Name: <code className="text-xs px-1 py-0.5 bg-muted rounded">Hatrio</code></li>
             <li>Remote MCP server URL: <code className="text-xs px-1 py-0.5 bg-muted rounded break-all">{endpoint}</code></li>
             <li>Leave OAuth Client ID / Secret <strong>blank</strong> — Claude registers itself automatically.</li>
           </ul>
@@ -146,7 +146,7 @@ function ClaudeWebInstructions({ endpoint }: { endpoint: string }) {
         </li>
         <li>
           Try it: in any new chat, ask <em>&quot;Show me my CRM pipeline&quot;</em> or <em>&quot;What support tickets are
-          open?&quot;</em> Claude will use the SimplerDevelopment connector to answer.
+          open?&quot;</em> Claude will use the Hatrio connector to answer.
         </li>
       </ol>
       <div className="rounded-xl border border-border p-3 text-xs space-y-1.5">
@@ -155,9 +155,9 @@ function ClaudeWebInstructions({ endpoint }: { endpoint: string }) {
           Two ways to revoke at any time:
         </p>
         <ul className="list-disc ml-5 text-muted-foreground space-y-0.5">
-          <li>Claude.ai → Settings → Connectors → SimplerDevelopment → Disconnect.</li>
+          <li>Claude.ai → Settings → Connectors → Hatrio → Disconnect.</li>
           <li>The <span className="font-medium">OAuth-issued tokens</span> table below — click <span className="font-medium">Revoke</span>
-              on the SimplerDevelopment row. Cuts access immediately.</li>
+              on the Hatrio row. Cuts access immediately.</li>
         </ul>
         <p className="text-muted-foreground">
           Tokens have a 1-year max lifetime and are scoped to the portal you approved — they can&apos;t see other portals
@@ -197,7 +197,7 @@ function CodeBlock({ children }: { children: string }) {
 function ClaudeDesktopInstructions({ endpoint }: { endpoint: string }) {
   const config = `{
   "mcpServers": {
-    "simplerdevelopment": {
+    "hatrio": {
       "command": "npx",
       "args": [
         "-y",
@@ -220,11 +220,11 @@ function ClaudeDesktopInstructions({ endpoint }: { endpoint: string }) {
           <span className="font-medium">Open the Claude Desktop config</span> file:
           <ul className="list-disc ml-5 mt-1 text-muted-foreground space-y-0.5">
             <li>macOS: <code className="text-xs px-1 py-0.5 bg-muted rounded">~/Library/Application Support/Claude/claude_desktop_config.json</code></li>
-            <li>Windows: <code className="text-xs px-1 py-0.5 bg-muted rounded">%APPDATA%\Claude\claude_desktop_config.json</code></li>
+            <li>Windows: <code className="text-xs px-1 py-0.5 bg-muted rounded">%APPDATA%\\Claude\\claude_desktop_config.json</code></li>
           </ul>
         </li>
         <li>
-          <span className="font-medium">Add the SimplerDevelopment MCP server</span> (replace{' '}
+          <span className="font-medium">Add the Hatrio MCP server</span> (replace{' '}
           <code className="text-xs px-1 py-0.5 bg-muted rounded">sd_mcp_your_key_here</code> with the key you generated):
           <div className="mt-2"><CodeBlock>{config}</CodeBlock></div>
         </li>
@@ -242,7 +242,7 @@ function ClaudeDesktopInstructions({ endpoint }: { endpoint: string }) {
 }
 
 function ClaudeCodeInstructions({ endpoint }: { endpoint: string }) {
-  const command = `claude mcp add --transport http simplerdevelopment \\
+  const command = `claude mcp add --transport http hatrio \\
   ${endpoint} \\
   --header "Authorization: Bearer sd_mcp_your_key_here"`;
   return (
@@ -258,7 +258,7 @@ function ClaudeCodeInstructions({ endpoint }: { endpoint: string }) {
         </li>
         <li>
           <span className="font-medium">Verify</span> with <code className="text-xs px-1 py-0.5 bg-muted rounded">claude mcp list</code>.
-          The <code className="text-xs px-1 py-0.5 bg-muted rounded">simplerdevelopment</code> server should appear and respond.
+          The <code className="text-xs px-1 py-0.5 bg-muted rounded">hatrio</code> server should appear and respond.
         </li>
         <li>
           In any Claude Code session, type <code className="text-xs px-1 py-0.5 bg-muted rounded">/mcp</code> to see available tools.
@@ -288,7 +288,7 @@ function ChatGptInstructions({ endpoint }: { endpoint: string }) {
         <li>
           Configure the connector:
           <ul className="list-disc ml-5 mt-1 text-muted-foreground space-y-0.5">
-            <li>Name: <code className="text-xs px-1 py-0.5 bg-muted rounded">SimplerDevelopment</code></li>
+            <li>Name: <code className="text-xs px-1 py-0.5 bg-muted rounded">Hatrio</code></li>
             <li>Server URL: <code className="text-xs px-1 py-0.5 bg-muted rounded">{endpoint}</code></li>
             <li>Auth: <span className="font-medium">Bearer token</span></li>
             <li>Token: <code className="text-xs px-1 py-0.5 bg-muted rounded">sd_mcp_your_key_here</code></li>
@@ -296,7 +296,7 @@ function ChatGptInstructions({ endpoint }: { endpoint: string }) {
         </li>
         <li>
           <span className="font-medium">Save and enable the connector</span>. New conversations will have access to
-          all the SimplerDevelopment tools your key&apos;s scopes allow.
+          all the Hatrio tools your key&apos;s scopes allow.
         </li>
       </ol>
       <p className="text-xs text-muted-foreground">

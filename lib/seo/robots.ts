@@ -8,7 +8,7 @@ export type ParsedRobots = {
   sitemaps: string[];
 };
 
-const DEFAULT_UA = 'SimplerDevelopmentBot';
+const DEFAULT_UA = 'HatrioBot';
 
 type Rule = { path: string; allow: boolean };
 type Group = { agents: string[]; rules: Rule[] };

@@ -85,9 +85,9 @@ export function WebsiteSubNav({ site }: WebsiteSubNavProps) {
     : site.vercelDomain
       ? `https://${site.vercelDomain}`
       : site.subdomain
-        ? `https://${site.subdomain}.simplerdevelopment.com`
+        ? `https://${site.subdomain}.hatrio.ai`
         : null;
-  const subtitle = site.domain || site.vercelDomain || (site.subdomain ? `${site.subdomain}.simplerdevelopment.com` : '');
+  const subtitle = site.domain || site.vercelDomain || (site.subdomain ? `${site.subdomain}.hatrio.ai` : '');
 
   return (
     <div className="-mx-6 -mt-6 mb-6 sticky top-0 z-30 bg-background/95 backdrop-blur border-b border-border">

@@ -171,16 +171,16 @@ export default function ApiKeysManager({ siteId }: { siteId: number }) {
       {/* SDK usage hint */}
       <div className="p-4 bg-muted/50 rounded-xl">
         <p className="text-xs font-medium text-foreground mb-2">Quick Start</p>
-        <pre className="text-xs text-muted-foreground font-mono overflow-x-auto">{`npm install @simplerdevelopment/sdk
+        <pre className="text-xs text-muted-foreground font-mono overflow-x-auto">{`npm install @hatrio/sdk
 
-import { SimplerDevelopment } from '@simplerdevelopment/sdk';
+import { Hatrio } from '@hatrio/sdk';
 
-const sd = new SimplerDevelopment({
+const hatrio = new Hatrio({
   siteId: ${siteId},
   apiKey: 'your-api-key-here',
 });
 
-const posts = await sd.posts.list();`}</pre>
+const posts = await hatrio.posts.list();`}</pre>
       </div>
     </div>
   );

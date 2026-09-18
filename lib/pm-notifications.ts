@@ -4,8 +4,8 @@ import { db } from '@/lib/db';
 import { kanbanCards, kanbanCardWatchers, kanbanCardComments, projects, users, notifications } from '@/lib/db/schema';
 import { resend } from './email/index';
 
-const BASE_URL = process.env.NEXTAUTH_URL || 'https://simplerdevelopment.com';
-const FROM_EMAIL = process.env.RESEND_FROM_EMAIL || 'portal@simplerdevelopment.com';
+const BASE_URL = process.env.NEXTAUTH_URL || 'https://hatrio.ai';
+const FROM_EMAIL = process.env.RESEND_FROM_EMAIL || 'portal@hatrio.ai';
 
 /**
  * Activity types that should email watchers. Noisy events (label toggle,

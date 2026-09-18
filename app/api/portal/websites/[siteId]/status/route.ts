@@ -30,7 +30,7 @@ export async function GET(
     data: {
       deploymentStatus: site.deploymentStatus,
       subdomain: site.subdomain,
-      fullDomain: site.subdomain ? `${site.subdomain}.simplerdevelopment.com` : null,
+      fullDomain: site.subdomain ? `${site.subdomain}.hatrio.ai` : null,
       githubRepoName: site.githubRepoName,
       githubRepoUrl: site.githubRepoUrl,
       vercelProjectId: site.vercelProjectId,

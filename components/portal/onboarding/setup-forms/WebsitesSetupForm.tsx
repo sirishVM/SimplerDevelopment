@@ -80,7 +80,7 @@ export function WebsitesSetupForm({ onCreated }: Props) {
             className="flex-1 min-w-0 rounded-lg border border-border bg-background px-3 py-2 text-[14px] focus:outline-none focus:ring-2 focus:ring-primary"
             aria-label="Subdomain"
           />
-          <span className="text-[13px] text-muted-foreground whitespace-nowrap">.simplerdevelopment.com</span>
+          <span className="text-[13px] text-muted-foreground whitespace-nowrap">.hatrio.ai</span>
         </div>
       </div>
 

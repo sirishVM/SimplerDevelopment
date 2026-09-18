@@ -127,7 +127,7 @@ export default async function PortalCmsPage({
                           {site.name}
                         </h2>
                         {site.subdomain ? (
-                          <p className="text-xs font-mono text-muted-foreground mt-0.5 truncate">{site.subdomain}.simplerdevelopment.com</p>
+                          <p className="text-xs font-mono text-muted-foreground mt-0.5 truncate">{site.subdomain}.hatrio.ai</p>
                         ) : site.domain ? (
                           <p className="text-xs font-mono text-muted-foreground mt-0.5 truncate">{site.domain}</p>
                         ) : (

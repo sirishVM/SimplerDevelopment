@@ -162,7 +162,7 @@ export default function PortalCmsNewPage() {
         <div className="space-y-5">
           <div>
             <h1 className="text-xl font-display font-extrabold tracking-[-0.02em] text-foreground">Your website address</h1>
-            <p className="text-muted-foreground text-sm mt-1">Your site will be live at a simplerdevelopment.com subdomain. You can add a custom domain later.</p>
+            <p className="text-muted-foreground text-sm mt-1">Your site will be live at a hatrio.ai subdomain. You can add a custom domain later.</p>
           </div>
 
           {/* Subdomain */}
@@ -179,7 +179,7 @@ export default function PortalCmsNewPage() {
                   />
                 </div>
                 <div className="px-3 py-2.5 bg-muted border border-l-0 border-border rounded-r-lg text-sm text-muted-foreground font-mono shrink-0">
-                  .simplerdevelopment.com
+                  .hatrio.ai
                 </div>
               </div>
               <p className="text-xs text-muted-foreground mt-1.5">
@@ -216,7 +216,7 @@ export default function PortalCmsNewPage() {
             </div>
             <div className="flex justify-between">
               <span className="text-muted-foreground">URL</span>
-              <span className="text-foreground font-mono text-xs">{effectiveSubdomain}.simplerdevelopment.com</span>
+              <span className="text-foreground font-mono text-xs">{effectiveSubdomain}.hatrio.ai</span>
             </div>
             {form.domain && (
               <div className="flex justify-between">

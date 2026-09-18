@@ -99,7 +99,7 @@ export async function POST(req: Request) {
     .where(eq(users.id, user.id));
 
   // Send the verification email (non-fatal — same pattern as signup route).
-  const origin = process.env.NEXT_PUBLIC_SITE_URL ?? 'https://simplerdevelopment.com';
+  const origin = process.env.NEXT_PUBLIC_SITE_URL ?? 'https://hatrio.ai';
   const verifyUrl = `${origin}/api/auth/verify-email?token=${verificationToken}`;
 
   // Dev convenience: surface the link in the server console so a developer can
@@ -112,7 +112,7 @@ export async function POST(req: Request) {
 
   try {
     await sendEmail({
-      from: process.env.RESEND_FROM_EMAIL ?? 'SimplerDevelopment <noreply@simplerdevelopment.com>',
+      from: process.env.RESEND_FROM_EMAIL ?? 'Hatrio <noreply@hatrio.ai>',
       to: user.email,
       subject: 'Verify your email — new link',
       html: [

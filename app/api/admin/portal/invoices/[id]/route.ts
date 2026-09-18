@@ -53,13 +53,13 @@ export async function PATCH(req: Request, { params }: { params: Promise<{ id: st
         .limit(1);
 
       if (clientRow?.userEmail) {
-        const baseUrl = process.env.NEXTAUTH_URL || 'https://app.simplerdevelopment.com';
+        const baseUrl = process.env.NEXTAUTH_URL || 'https://app.hatrio.ai';
         const invoiceLink = `${baseUrl}/portal/invoices/${invoiceId}`;
-        const from = process.env.RESEND_FROM_EMAIL || 'noreply@simplerdevelopment.com';
+        const from = process.env.RESEND_FROM_EMAIL || 'billing@hatrio.ai';
         const invoiceNumber = invoice?.number ?? existing.number;
 
         await resend.emails.send({
-          from: `Simpler Development Billing <${from}>`,
+          from: `Hatrio Billing <${from}>`,
           to: clientRow.userEmail,
           subject: `Invoice ${invoiceNumber} is ready`,
           html: `<!DOCTYPE html>
@@ -85,7 +85,7 @@ export async function PATCH(req: Request, { params }: { params: Promise<{ id: st
           </tr>
           <tr>
             <td style="padding:16px 40px;background:#f9fafb;border-top:1px solid #e5e7eb;text-align:center;">
-              <p style="margin:0;font-size:12px;color:#9ca3af;">Powered by SimplerDevelopment</p>
+              <p style="margin:0;font-size:12px;color:#9ca3af;">Powered by Hatrio</p>
             </td>
           </tr>
         </table>

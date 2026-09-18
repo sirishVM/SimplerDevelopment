@@ -85,7 +85,7 @@ export async function POST(req: Request) {
     // Extract prefix from to address: prefix@simplerdevelopment.com (supports
     // plus-tagging like brain+<token>@…). The prefix used for client lookup is
     // the part before any '+', so client+anything@… still matches a client.
-    const toMatch = to.toLowerCase().match(/^([^@]+)@simplerdevelopment\.com$/);
+    const toMatch = to.toLowerCase().match(/^([^@]+)@(hatrio\.ai|simplerdevelopment\.com)$/);
     if (!toMatch) {
       return NextResponse.json({ error: 'Invalid destination address' }, { status: 400 });
     }
@@ -147,7 +147,7 @@ export async function POST(req: Request) {
     const gate = await checkAiPlanGate({ clientId: client.id, provider: 'anthropic' });
     if (!gate.allowed) {
       await resend.emails.send({
-        from: `Simpler Development <${process.env.RESEND_FROM_EMAIL || 'noreply@simplerdevelopment.com'}>`,
+        from: `Hatrio <${process.env.RESEND_FROM_EMAIL || 'noreply@hatrio.ai'}>`,
         to: senderEmail,
         subject: `Re: ${subject}`,
         text: gate.message ?? 'AI access is not available on the current plan.',
@@ -165,10 +165,10 @@ export async function POST(req: Request) {
       if (!canProceed) {
         // Send a reply saying they're out of credits
         await resend.emails.send({
-          from: `Simpler Development <${process.env.RESEND_FROM_EMAIL || 'noreply@simplerdevelopment.com'}>`,
+          from: `Hatrio <${process.env.RESEND_FROM_EMAIL || 'noreply@hatrio.ai'}>`,
           to: senderEmail,
           subject: `Re: ${subject}`,
-          text: `Your AI credits are depleted. Please purchase more credits or enable pay-as-you-go at https://simplerdevelopment.com/portal/dashboard, or add a BYOK key at https://simplerdevelopment.com/portal/integrations/api-keys, to continue using the email assistant.`,
+          text: `Your AI credits are depleted. Please purchase more credits or enable pay-as-you-go at https://app.hatrio.ai/portal/dashboard, or add a BYOK key at https://app.hatrio.ai/portal/integrations/api-keys, to continue using the email assistant.`,
           ...(messageId ? { headers: { 'In-Reply-To': messageId, 'References': messageId } } : {}),
         });
         return NextResponse.json({ status: 'replied', reason: 'insufficient credits' });
@@ -260,7 +260,7 @@ export async function POST(req: Request) {
     void recordAiUsage({ clientId: client.id, source: resolved.source, tokens: totalTokens });
 
     // Send reply via Resend
-    const replyFrom = `${client.company || 'Simpler Development'} AI <${process.env.RESEND_FROM_EMAIL || 'noreply@simplerdevelopment.com'}>`;
+    const replyFrom = `${client.company || 'Hatrio'} AI <${process.env.RESEND_FROM_EMAIL || 'noreply@hatrio.ai'}>`;
 
     await resend.emails.send({
       from: replyFrom,

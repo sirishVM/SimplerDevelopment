@@ -203,7 +203,7 @@ export function registerCmsTools(server: McpServer, ctx: PortalMcpContext): void
             domain: args.domain ?? null,
             description: args.description ?? null,
             subdomain: sub,
-            vercelDomain: `${sub}.simplerdevelopment.com`,
+            vercelDomain: `${sub}.hatrio.ai`,
             deploymentStatus: 'pending',
             active: true,
           }).returning();

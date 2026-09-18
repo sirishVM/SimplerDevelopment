@@ -131,7 +131,7 @@ export function StepUpsell({ next }: StepProps) {
   }
 
   function handleAddBundle() {
-    if (!window.confirm('Switch to SimplerDev Complete? This will replace your individual modules with the bundle subscription.')) return;
+    if (!window.confirm('Switch to Hatrio Complete? This will replace your individual modules with the bundle subscription.')) return;
     setBundleState('loading');
     void addModule(BUNDLE_SLUG, '__bundle__', setBundleState);
   }

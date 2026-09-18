@@ -140,11 +140,11 @@ async function buildPostPreviewIframeSrc(
   if (!site || site.clientId !== clientId) return null;
 
   const fullDomain =
-    site.vercelDomain || (site.subdomain ? `${site.subdomain}.simplerdevelopment.com` : null);
+    site.vercelDomain || (site.subdomain ? `${site.subdomain}.hatrio.ai` : null);
   const identifier = fullDomain || site.domain || null;
   if (!identifier) return null;
 
-  const appUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://simplerdevelopment.com';
+  const appUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://hatrio.ai';
   // Mirror the editor's page-vs-blog path convention so the preview resolves
   // to the same public route the editor previews.
   const basePath = postType === 'page' ? `/${slug}` : `/blog/${slug}`;

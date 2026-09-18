@@ -337,7 +337,7 @@ function PortalSubdomainSection() {
       if (data.success) {
         setDefaultWebsiteId(websiteId);
         const site = websites.find(w => w.id === websiteId);
-        setMessage({ type: 'success', text: `Portal subdomain set to ${site?.subdomain}.simplerdevelopment.com` });
+        setMessage({ type: 'success', text: `Portal subdomain set to ${site?.subdomain}.hatrio.ai` });
       } else {
         setMessage({ type: 'error', text: data.error || 'Something went wrong.' });
       }
@@ -359,7 +359,7 @@ function PortalSubdomainSection() {
           <p className="text-sm text-muted-foreground mt-1">
             Choose which website determines your portal URL.
             {activeSubdomain && (
-              <> Your portal is at <strong>{activeSubdomain}.simplerdevelopment.com/portal</strong></>
+              <> Your portal is at <strong>{activeSubdomain}.hatrio.ai/portal</strong></>
             )}
           </p>
         </div>
@@ -385,7 +385,7 @@ function PortalSubdomainSection() {
                 </div>
                 <div className="flex-1 min-w-0">
                   <span className="text-sm font-medium text-foreground block truncate">{site.name}</span>
-                  <span className="text-xs text-muted-foreground">{site.subdomain}.simplerdevelopment.com</span>
+                  <span className="text-xs text-muted-foreground">{site.subdomain}.hatrio.ai</span>
                 </div>
                 {isSelected && (
                   <span className="material-icons text-primary text-base shrink-0">check_circle</span>
@@ -485,7 +485,7 @@ function DefaultPortalSection() {
               <div className="flex-1 min-w-0">
                 <span className="text-sm font-medium text-foreground block truncate">{portal.company}</span>
                 {portal.subdomain && (
-                  <span className="text-xs text-muted-foreground">{portal.subdomain}.simplerdevelopment.com</span>
+                  <span className="text-xs text-muted-foreground">{portal.subdomain}.hatrio.ai</span>
                 )}
               </div>
               {defaultClientId === portal.clientId && (

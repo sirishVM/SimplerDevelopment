@@ -43,7 +43,7 @@ export async function POST(req: Request) {
       {
         success: false,
         message:
-          'Your plan is managed by SimplerDevelopment — contact us to make changes.',
+          'Your plan is managed by Hatrio — contact us to make changes.',
       },
       { status: 403 },
     );
@@ -174,7 +174,7 @@ export async function POST(req: Request) {
   // ── 6. Trial: first self-serve subscription per client only ──────────────
   const trialEligible = client.trialUsedAt == null;
 
-  const origin = process.env.NEXT_PUBLIC_SITE_URL ?? 'https://simplerdevelopment.com';
+  const origin = process.env.NEXT_PUBLIC_SITE_URL ?? 'https://hatrio.ai';
   const returnPath = body.returnTo === 'onboarding'
     ? '/portal/onboarding?checkout='
     : '/portal/settings/billing/plans?status=';

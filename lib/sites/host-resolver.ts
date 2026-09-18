@@ -75,8 +75,8 @@ async function lookup(host: string): Promise<SiteHostInfo | null> {
     .limit(1);
   if (viaDomains[0]) return withExperimentState(viaDomains[0]);
 
-  // 3. Platform subdomain (<sub>.simplerdevelopment.com → clientWebsites.subdomain).
-  const sub = host.match(/^([^.]+)\.simplerdevelopment\.com$/);
+  // 3. Platform subdomain (<sub>.hatrio.ai or <sub>.simplerdevelopment.com → clientWebsites.subdomain).
+  const sub = host.match(/^([^.]+)\.(?:hatrio\.ai|simplerdevelopment\.com)$/);
   if (sub) {
     const subSite = await db
       .select(cols)

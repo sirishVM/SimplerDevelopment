@@ -108,10 +108,10 @@ async function resolvePrimaryHost(clientId: number): Promise<string | null> {
     .where(and(eq(clientWebsites.clientId, clientId), eq(clientWebsites.active, true)))
     .orderBy(clientWebsites.id)
     .limit(5);
-  const primary = sites.find((s) => s.domain && !s.domain.endsWith('.simplerdevelopment.com')) ?? sites[0];
+  const primary = sites.find((s) => s.domain && !s.domain.endsWith('.hatrio.ai') && !s.domain.endsWith('.simplerdevelopment.com')) ?? sites[0];
   if (!primary) return null;
   if (primary.domain) return primary.domain;
-  if (primary.subdomain) return `${primary.subdomain}.simplerdevelopment.com`;
+  if (primary.subdomain) return `${primary.subdomain}.hatrio.ai`;
   return null;
 }
 

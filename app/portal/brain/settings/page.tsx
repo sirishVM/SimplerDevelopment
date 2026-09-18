@@ -439,7 +439,7 @@ function NameField({
 
 function EmailIngestField({ token }: { token: string }) {
   const [copied, setCopied] = useState(false);
-  const address = `brain+${token}@simplerdevelopment.com`;
+  const address = `brain+${token}@hatrio.ai`;
 
   async function copy() {
     try {

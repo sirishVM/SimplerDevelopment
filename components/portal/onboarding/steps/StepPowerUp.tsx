@@ -18,7 +18,7 @@ export function StepPowerUp({ state, setAnswers, next, persist }: StepProps) {
 
   const mcpConfig = JSON.stringify({
     mcpServers: {
-      simplerdevelopment: {
+      hatrio: {
         command: 'npx',
         args: ['-y', 'mcp-remote', mcpEndpoint],
       },
@@ -64,7 +64,7 @@ export function StepPowerUp({ state, setAnswers, next, persist }: StepProps) {
   return (
     <div className="space-y-5">
       <p className="text-[14px] text-muted-foreground leading-relaxed">
-        SimplerDevelopment plays nicely with <strong>Claude Code</strong>, <strong>Claude Desktop</strong>,
+        Hatrio plays nicely with <strong>Claude Code</strong>, <strong>Claude Desktop</strong>,
         and any MCP-compatible client. Pair both halves below and you can draft pages, decks, emails, surveys,
         and more by chatting.
       </p>
@@ -79,7 +79,7 @@ export function StepPowerUp({ state, setAnswers, next, persist }: StepProps) {
         >
           <header className="flex items-center gap-2">
             <span className="material-icons text-[18px] text-primary">download</span>
-            <h3 className="text-[14.5px] font-extrabold tracking-[-0.01em] flex-1">Install SD Skills</h3>
+            <h3 className="text-[14.5px] font-extrabold tracking-[-0.01em] flex-1">Install Hatrio Skills</h3>
             {skillsDownloaded && (
               <span className="inline-flex items-center gap-1 text-[12px] text-emerald-600 dark:text-emerald-400 font-semibold">
                 <span className="material-icons text-[14px]">check_circle</span>
@@ -88,7 +88,7 @@ export function StepPowerUp({ state, setAnswers, next, persist }: StepProps) {
             )}
           </header>
           <p className="text-[12.5px] text-muted-foreground leading-[1.45] mt-0">
-            One installer adds every SimplerDevelopment skill to your assistant.
+            One installer adds every Hatrio skill to your assistant.
           </p>
 
           <div className="flex gap-2.5">

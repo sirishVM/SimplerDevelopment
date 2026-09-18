@@ -58,7 +58,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   if (!source) return { title: 'Migration Not Found' };
 
   return generateSEO({
-    title: `Migrate From ${source.name} To SimplerDevelopment`,
+    title: `Migrate From ${source.name} To Hatrio`,
     description: source.description,
     path: `/migrate/${slug}`,
   });
@@ -68,8 +68,8 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
 function buildFaqs(source: MigrationSource): { question: string; answer: string }[] {
   return [
     {
-      question: `How do I migrate from ${source.name} to SimplerDevelopment?`,
-      answer: `We do it for you. You export from ${source.name} (or give us access), we import and rebuild inside SimplerDevelopment, you review it on a staging URL, and we cut over with redirects in place. ${source.timeline}. You get a fixed scope and a fixed price before any work starts.`,
+      question: `How do I migrate from ${source.name} to Hatrio?`,
+      answer: `We do it for you. You export from ${source.name} (or give us access), we import and rebuild inside Hatrio, you review it on a staging URL, and we cut over with redirects in place. ${source.timeline}. You get a fixed scope and a fixed price before any work starts.`,
     },
     {
       question: `What does a ${source.name} migration cost?`,
@@ -85,7 +85,7 @@ function buildFaqs(source: MigrationSource): { question: string; answer: string 
     },
     {
       question: 'Do I have to keep paying you after the migration?',
-      answer: 'No. SimplerDevelopment is Apache-2.0 and self-hostable, so we can stand it up on your own hosting and your own database and hand over the keys. After that you pay your infrastructure provider, not a licence fee to us. If you would rather we ran it, managed hosting is available — but it is a choice, not a condition.',
+      answer: 'No. Hatrio gives you full ownership over your platform and data. After migration, you run without proprietary vendor lock-in or unpredictable price hikes.',
     },
   ];
 }
@@ -100,7 +100,7 @@ export default async function MigrationPage({ params }: PageProps) {
 
   const schema = [
     generateServiceSchema(
-      `${source.name} to SimplerDevelopment migration`,
+      `${source.name} to Hatrio migration`,
       source.description,
       'Website and CRM migration'
     ),
@@ -150,20 +150,18 @@ export default async function MigrationPage({ params }: PageProps) {
             We Set It Up On Your Hosting. No Forever Fees.
           </h2>
           <p className="mt-5 text-base leading-relaxed text-[color-mix(in_srgb,var(--retro-cream)_82%,transparent)]">
-            SimplerDevelopment is Apache-2.0 and self-hostable, so a migration does not have to end
-            with you renting your own business back. We stand the platform up on your hosting and
-            your database, move your data into it, hand over the keys, and leave. After that you
-            pay your infrastructure provider — not a per-seat licence to us, and not a fee that
-            climbs every time your list or your team grows.
+            Hatrio is engineered so a migration does not have to end
+            with you renting your own business back. We stand the platform up, move your data into it,
+            hand over the keys, and give you complete control.
           </p>
           <p className="mt-4 text-base leading-relaxed text-[color-mix(in_srgb,var(--retro-cream)_82%,transparent)]">
             If you would rather not run it yourself, we offer managed hosting too. That is a choice
-            you can reverse — the code is yours either way, and so is the data.
+            you can reverse — the data is always yours.
           </p>
           <div className="mt-8 grid gap-4 text-left sm:grid-cols-3">
             {[
               ['You own the deployment', 'Your host, your Postgres, your domain.'],
-              ['You own the code', 'Apache-2.0 — fork it, extend it, keep it.'],
+              ['You own the stack', 'Customizable, extendable, and secure.'],
               ['You can leave', 'Export the data and go. No exit fee, no hostage.'],
             ].map(([label, note]) => (
               <div

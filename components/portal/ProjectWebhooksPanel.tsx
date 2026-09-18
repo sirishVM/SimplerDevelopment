@@ -98,7 +98,7 @@ export default function ProjectWebhooksPanel({ projectId, canEdit }: { projectId
       <div className="flex items-center justify-between p-4 border-b border-border">
         <div>
           <h3 className="font-semibold text-foreground">Webhooks</h3>
-          <p className="text-xs text-muted-foreground mt-0.5">Get notified on card events. POSTs signed with <code className="bg-muted px-1 rounded">X-SimplerDev-Signature: sha256=…</code>.</p>
+          <p className="text-xs text-muted-foreground mt-0.5">Get notified on card events. POSTs signed with <code className="bg-muted px-1 rounded">X-Hatrio-Signature: sha256=…</code>.</p>
         </div>
         {canEdit && (
           <button onClick={() => setShowForm(v => !v)}

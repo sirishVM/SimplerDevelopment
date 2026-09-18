@@ -1,8 +1,8 @@
 import { resend } from './index';
 
-const FROM_EMAIL = process.env.RESEND_FROM_EMAIL || 'store@simplerdevelopment.com';
+const FROM_EMAIL = process.env.RESEND_FROM_EMAIL || 'store@hatrio.ai';
 const BASE_URL =
-  process.env.NEXT_PUBLIC_APP_URL || process.env.NEXTAUTH_URL || 'https://simplerdevelopment.com';
+  process.env.NEXT_PUBLIC_APP_URL || process.env.NEXTAUTH_URL || 'https://hatrio.ai';
 
 /**
  * Send an abandoned-cart recovery email with a one-click recovery link.

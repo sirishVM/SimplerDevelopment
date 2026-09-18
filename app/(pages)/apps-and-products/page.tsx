@@ -12,14 +12,14 @@ export const metadata = generateSEO({
 const products = [
   {
     id: '1',
-    title: 'Simpler CMS',
+    title: 'Hatrio CMS',
     description: 'A modern content management system built with Next.js. Custom post types, visual block editor, media library, and a clean admin interface.',
     features: ['Block Editor', 'Custom Post Types', 'Media Library', 'Role Management', 'SEO Tools', 'API Access'],
     status: 'Available',
   },
   {
     id: '2',
-    title: 'Simpler Prints',
+    title: 'Hatrio Prints',
     description: 'E-commerce platform for print-on-demand businesses. Product catalog, order management, and fulfillment integrations.',
     features: ['Product Catalog', 'Order Management', 'Fulfillment API', 'Customer Portal', 'Analytics', 'Multi-vendor'],
     status: 'Available',

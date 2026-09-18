@@ -21,6 +21,9 @@ async function deliver(webhookId: number, url: string, secret: string, event: st
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
+        'X-Hatrio-Event': event,
+        'X-Hatrio-Signature': `sha256=${signature}`,
+        'X-Hatrio-Webhook-Id': String(webhookId),
         'X-SimplerDev-Event': event,
         'X-SimplerDev-Signature': `sha256=${signature}`,
         'X-SimplerDev-Webhook-Id': String(webhookId),
